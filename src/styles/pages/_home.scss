@@ -1,0 +1,38 @@
+.logo{
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    width: 412px;
+    height: 134px;
+    &_title{
+        text-align: center;
+        margin-top: 80px;
+        font-size: 3rem;
+        font-family: global.$font2;
+    }
+}
+
+.link_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.link_identity{
+    text-align: center;
+    .logo_group{
+        transition: transform 0.6s ease-in-out;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+    .identity{
+        color: global.$black;
+        &:hover{
+            color: global.$primary;
+        }
+    }
+    
+}
+
