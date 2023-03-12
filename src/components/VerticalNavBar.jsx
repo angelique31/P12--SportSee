@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import iconOne from "../assets/icon1.png";
-import iconTwo from "../assets/icon2.png";
-import iconThree from "../assets/icon3.png";
-import iconFour from "../assets/icon4.png";
+import iconOne from "../assets/iconsVerticalNav/icon1.png";
+import iconTwo from "../assets/iconsVerticalNav/icon2.png";
+import iconThree from "../assets/iconsVerticalNav/icon3.png";
+import iconFour from "../assets/iconsVerticalNav/icon4.png";
 
 const VerticalNavBar = () => {
   return (

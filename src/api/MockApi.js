@@ -1,35 +1,23 @@
 import React from "react";
-import { USER_MAIN_DATA } from "../mockedData";
-import { useParams } from "react-router-dom";
+import UserActivity from "../components/UserActivity";
+// import UserMainData from "../components/UserMainData";
+import UserAverageSessions from "../components/UserAverageSessions";
+import UserPerformance from "../components/UserPerformance";
+import UserName from "../components/UserName";
+import UserMainData from "../components/UserMainData";
 
-// const {
-//   USER_MAIN_DATA,
-//   // USER_ACTIVITY,
-//   // USER_AVERAGE_SESSIONS,
-//   // USER_PERFORMANCE
-// } = require("../mockedData");
-
-const MockApi = () => {
-  const { userId } = useParams();
-  const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
-  // const user = USER_MAIN_DATA.find((item) => item.id === 12);
-
+const MockApi = ({ user }) => {
   return (
-    <div>
-      {user && (
-        <div>
-          <h2>{user.userInfos.firstName}</h2>
-          <p>Score {user.todayScore}</p>
-          <p>Calories: {user.keyData.calorieCount}</p>
-          <p>Protéines: {user.keyData.proteinCount}</p>
-          <p>Glucides: {user.keyData.carbohydrateCount}</p>
-          <p>Lipides: {user.keyData.lipidCount}</p>
-        </div>
-      )}
-    </div>
+    <section className="dashboard">
+      <UserName />
+      <section className="user_data">
+        <UserActivity />
+        <UserAverageSessions />
+        <UserPerformance />
+        <UserMainData />
+      </section>
+    </section>
   );
 };
 
 export default MockApi;
-
-/******************************************* */

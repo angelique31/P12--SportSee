@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom";
 
 const Dashboard = () => {
   const { userId } = useParams();
-
-  console.log(window.location.href);
   return (
     <div>
       <Header />
-      <VerticalNavBar />
-      <MockApi userId={userId} />
+      <main>
+        <VerticalNavBar />
+        <MockApi userId={userId} />
+      </main>
     </div>
   );
 };

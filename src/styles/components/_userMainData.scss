@@ -1,0 +1,33 @@
+.user_data{
+    display: flex;
+}
+
+/**************Energy container**************************/
+
+.energy_info{
+    display: flex;
+    align-items: center;
+    background-color: rgba(251, 251, 251, 1);
+    width: 258px;
+    height: 124px;
+    margin-bottom: 39px;
+    &--logo{
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+    }
+}
+
+.info_calorie{
+    
+    &--number{
+        font-family: global.$font1;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+    &--name{
+        font-family: global.$font1;
+        font-weight: 500;
+        font-size: 0.8rem;
+    }
+}
