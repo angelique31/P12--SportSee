@@ -3,12 +3,15 @@
 }
 
 /**************Energy container**************************/
+.energy_container{
+    margin-left: 31px;
+}
 
 .energy_info{
     display: flex;
     align-items: center;
     background-color: rgba(251, 251, 251, 1);
-    width: 258px;
+    width: 218px;
     height: 124px;
     margin-bottom: 39px;
     &--logo{

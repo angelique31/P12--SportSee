@@ -1,3 +1,44 @@
+.recharts{
+    background-color: rgba(251, 251, 251, 1);
+    width: 735px;
+    height: 350px;
+    border-radius: 5px;
+    margin-left: 107px;
+}
+
+.data_title{
+    display: flex;
+    align-items: center;
+    font-family: global.$font1;
+    font-weight: 500;
+    font-size: 0.9rem;
+    justify-content: space-around;
+    padding-top: 32px;
+    &--weight::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: black;
+        margin-right: 10px;
+    }
+    &--calorie::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: global.$primary;
+        margin-right: 10px;
+    }
+}
+
+.recharts-wrapper{
+    margin-top: 80px;
+}
+
 .recharts-default-legend{
     display: flex;
 }
+

@@ -1,7 +1,7 @@
 import React from "react";
 import { USER_ACTIVITY } from "../mockedData";
 import { useParams } from "react-router-dom";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts";
 
 const UserActivity = () => {
   const { userId } = useParams();
@@ -15,11 +15,38 @@ const UserActivity = () => {
     calories: session.calories,
   }));
 
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div
+          className="custom-tooltip"
+          style={{
+            color: "rgba(255, 255, 255, 1)",
+            fontSize: "0.5rem",
+            fontFamily: "Roboto",
+            fontWeight: "500",
+            padding: "15px 10px",
+            backgroundColor: "rgba(230, 0, 0, 1)",
+          }}
+        >
+          <p>{`${payload[0].value} kg`}</p>
+          <p style={{ margin: "20px 0 0 0" }}>{`${payload[1].value} kCal`}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div>
-      <h2>Activité quotidienne</h2>
+    <div className="recharts">
+      <div className="data_title">
+        <h2 className="data_title--name">Activité quotidienne</h2>
+        <p className="data_title--weight">Poids (kg)</p>
+        <p className="data_title--calorie">Calories brûlées (kCal)</p>
+      </div>
+
       {userActivity && (
-        <BarChart width={835} height={320} data={data}>
+        <BarChart width={702} height={206} data={data}>
           <XAxis dataKey="name" />
 
           <YAxis domain={[65, 120]} hide={true} />
@@ -29,14 +56,8 @@ const UserActivity = () => {
             position="right"
             ticks={[70, 230, 390]}
           />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
 
-          <Legend
-            layout="vertical"
-            verticalAlign="top"
-            align="right"
-            wrapperStyle={{ right: "180px" }}
-          />
           <Bar
             dataKey="weight"
             fill="rgba(40, 45, 48, 1)"
