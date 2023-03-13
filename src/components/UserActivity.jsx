@@ -35,13 +35,20 @@ const UserActivity = () => {
             layout="vertical"
             verticalAlign="top"
             align="right"
-            wrapperStyle={{ right: "172px" }}
+            wrapperStyle={{ right: "180px" }}
           />
-          <Bar dataKey="weight" fill="rgba(40, 45, 48, 1)" />
+          <Bar
+            dataKey="weight"
+            fill="rgba(40, 45, 48, 1)"
+            barSize={7}
+            radius={[5, 5, 0, 0]}
+          />
           <Bar
             dataKey="calories"
             fill="rgba(230, 0, 0, 1)"
             yAxisId="right"
+            barSize={7}
+            radius={[5, 5, 0, 0]}
           ></Bar>
         </BarChart>
       )}
