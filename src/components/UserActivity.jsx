@@ -46,7 +46,7 @@ const UserActivity = () => {
       </div>
 
       {userActivity && (
-        <BarChart width={702} height={206} data={data}>
+        <BarChart width={702} height={206} data={data} margin={{ left: 30 }}>
           <XAxis dataKey="name" />
 
           <YAxis domain={[65, 120]} hide={true} />
@@ -54,7 +54,7 @@ const UserActivity = () => {
             yAxisId="right"
             orientation="right"
             position="right"
-            ticks={[70, 230, 390]}
+            // ticks={[70, 230, 390]}
           />
           <Tooltip content={<CustomTooltip />} />
 
