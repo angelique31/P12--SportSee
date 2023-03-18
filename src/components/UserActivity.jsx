@@ -14,8 +14,12 @@ const UserActivity = () => {
     weight: session.kilogram,
     calories: session.calories,
   }));
-
-  const CustomTooltip = ({ active, payload, label }) => {
+  /**
+   * Fonction pour personnaliser le tooltip (infobulle)
+   * @param {*} param0
+   * @returns
+   */
+  const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div

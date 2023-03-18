@@ -1,0 +1,37 @@
+.average_session{
+    display: inline-block; 
+    position: relative;
+    margin-left: 107px;
+    &--title{
+        position: absolute;
+        margin: 0;
+        bottom: 195px;
+        font-family: global.$font1;
+        font-weight: 500;
+        font-size: 0.9rem;
+        width: 147px;
+        color: rgba(255, 255, 255, 1);
+        z-index: 10;
+        opacity: 50%;
+        margin-left: 34px;
+    }
+}
+
+.average_session .recharts-wrapper {
+    background-color: red;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .custom_tooltip_session{
+    width: 39px;
+    height: 25px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    &--text{
+        font-size: 8px;
+    }
+  }
