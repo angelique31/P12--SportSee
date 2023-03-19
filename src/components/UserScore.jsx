@@ -11,8 +11,8 @@ const UserScore = () => {
 
   return (
     <div className="user_score">
-      <h1>User score :</h1>
-      <p>Score : {score}%</p>
+      <h1>Score :</h1>
+      <p>{score}% de votre objectif</p>
     </div>
   );
 };

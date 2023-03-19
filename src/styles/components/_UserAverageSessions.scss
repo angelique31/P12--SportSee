@@ -1,11 +1,9 @@
 .average_session{
-    display: inline-block; 
     position: relative;
-    margin-left: 107px;
     &--title{
         position: absolute;
         margin: 0;
-        bottom: 195px;
+        bottom: 200px;
         font-family: global.$font1;
         font-weight: 500;
         font-size: 0.9rem;
@@ -21,6 +19,7 @@
     background-color: red;
     border-radius: 5px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    
   }
 
   .custom_tooltip_session{

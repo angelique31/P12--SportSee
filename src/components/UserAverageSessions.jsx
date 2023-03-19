@@ -154,8 +154,8 @@ const UserAverageSessions = () => {
       </svg>
 
       <LineChart
-        width={258}
-        height={263}
+        width={230}
+        height={260}
         data={transformedData}
         margin={{ top: 70, right: 30, left: 20, bottom: 5 }}
         onMouseMove={handleMouseMove}
@@ -164,14 +164,14 @@ const UserAverageSessions = () => {
           x={0}
           y={0}
           width={maskPosition}
-          height={263}
+          height={260}
           fill="rgba(255, 0, 0, 0.4)"
         />
         <rect
           x={maskPosition}
           y={0}
-          width={258 - maskPosition}
-          height={263}
+          width={230 - maskPosition}
+          height={260}
           fill={surfaceColor}
         />
         <XAxis

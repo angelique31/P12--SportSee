@@ -3,5 +3,10 @@ main{
 }
 
 .user_performances{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3,220px);
+    grid-gap: 10px;
+    gap: 48px;
+    margin-left: 107px;
+    margin-top: -60px;
 }

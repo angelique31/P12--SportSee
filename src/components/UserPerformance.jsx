@@ -58,7 +58,7 @@ const UserPerformance = () => {
       <RadarChart
         cx={125}
         cy={110}
-        outerRadius={90}
+        outerRadius={65}
         width={250}
         height={290}
         data={radarChartData}
