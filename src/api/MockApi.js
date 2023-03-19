@@ -1,6 +1,6 @@
 import React from "react";
 import UserActivity from "../components/UserActivity";
-// import UserMainData from "../components/UserMainData";
+
 import UserAverageSessions from "../components/UserAverageSessions";
 import UserPerformance from "../components/UserPerformance";
 import UserName from "../components/UserName";
@@ -14,7 +14,7 @@ const MockApi = () => {
       <section className="user_data">
         <div className="user_data--activity">
           <UserActivity />
-          <div>
+          <div className="user_performances">
             <UserAverageSessions />
             <UserPerformance />
             <UserScore />

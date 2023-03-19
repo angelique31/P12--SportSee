@@ -3,6 +3,12 @@ import { USER_AVERAGE_SESSIONS } from "../mockedData";
 import { useParams } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
+/**
+ * Transforme les données brutes en un format adapté pour le graphique linéaire.
+ *
+ * @param {Array} data - Les données brutes, sous forme de tableau d'objets.
+ * @returns {Array} Les données transformées, sous forme de tableau d'objets avec les durées de session pour chaque utilisateur pour chaque jour.
+ */
 const transformData = (data) => {
   const transformedData = [];
 
@@ -27,18 +33,28 @@ const transformData = (data) => {
 };
 
 /**
- * fonction pour convertir les chiffres en lettres de jours de la semaine
+ * Tableau contenant les lettres correspondant aux jours de la semaine.
+ * Les jours sont indexés de 0 (Lundi) à 6 (Dimanche).
+ *
+ * @type {Array}
  */
 const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
 
+/**
+ * Fonction pour convertir les chiffres en lettres de jours de la semaine.
+ *
+ * @param {number} dayNumber - Le numéro de jour (1-7).
+ * @returns {string} La lettre correspondant au jour de la semaine (L, M, M, J, V, S, D).
+ */
 const dayFormatter = (dayNumber) => {
   return dayLabels[dayNumber - 1] || "";
 };
 
 /**
- * Fonction pour personnaliser les lettres des jours
- * @param {*} param0
- * @returns
+ * Composant personnalisé pour afficher les lettres des jours de la semaine sur l'axe X du graphique.
+ *
+ * @param {*} param0 - Les propriétés du composant, passées sous forme d'objet (x, y, payload).
+ * @returns Le composant personnalisé pour afficher les lettres des jours de la semaine sur l'axe X du graphique.
  */
 const CustomizedAxisTick = ({ x, y, payload }) => {
   return (
@@ -59,12 +75,17 @@ const CustomizedAxisTick = ({ x, y, payload }) => {
     </g>
   );
 };
+
 /**
- * Fonction pour personnaliser le tooltip
- * @param {*} param0
- * @returns
+ * Composant qui affiche une info-bulle personnalisée lorsque l'utilisateur
+ * survole un point sur le graphique de la durée moyenne des sessions.
+ *
+ * @param {boolean} active - Indique si l'info-bulle doit être affichée ou non.
+ * @param {Object[]} payload - Tableau contenant les données associées au point survolé.
+ * @param {string} payload[].value - Valeur associée au point survolé (durée d'une session en minutes).
+ * @returns {JSX.Element} Élément React représentant l'info-bulle personnalisée.
  */
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="custom_tooltip_session">
@@ -74,8 +95,15 @@ const CustomTooltip = ({ active, payload, label }) => {
   }
   return null;
 };
+/**
+ * Désactiver le curseur par défaut du navigateur lorsqu'il survole le graphique
+ */
 const CustomCursor = () => null;
 
+/**
+ *Composant affichant la durée moyenne des sessions d'un utilisateur sous forme de graphique à ligne.
+ * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
+ */
 const UserAverageSessions = () => {
   const { userId } = useParams();
   const transformedData = transformData(USER_AVERAGE_SESSIONS);
@@ -86,7 +114,10 @@ const UserAverageSessions = () => {
 
   /**
    * Gère le mouvement de la souris sur le graphique et modifie la couleur de fond
-   * @param {*} e
+   *
+   * @param {Object} e - Objet représentant l'événement de mouvement de la souris.
+   * @param {number} e.chartX - Position horizontale de la souris sur le graphique.
+   * @param {string} e.activeLabel - Étiquette de l'axe X du graphique correspondant à la position de la souris.
    */
   const handleMouseMove = (e) => {
     if (e && e.activeLabel) {
