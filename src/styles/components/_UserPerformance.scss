@@ -1,11 +1,14 @@
 .radarChart{
     background-color: black;
-    width: 230px;
-    height: 260px;
+    width: 213px;
+    height: 220px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 98px;
     border-radius: 5px;
     
+}
+
+.my-radar-chart{
+    margin-top: 60px;
 }

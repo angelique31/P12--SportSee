@@ -62,7 +62,7 @@ const CustomizedAxisTick = ({ x, y, payload }) => {
       <text
         x={0}
         y={0}
-        dy={16}
+        dy={5}
         textAnchor="end"
         fill="rgba(255, 255, 255, 1)"
         fontSize="0.75rem"
@@ -141,8 +141,8 @@ const UserAverageSessions = () => {
             <rect
               x={maskPosition}
               y={0}
-              width={258 - maskPosition}
-              height={263}
+              width={213 - maskPosition}
+              height={220}
               fill="url(#maskGradient)"
             />
           </mask>
@@ -154,8 +154,8 @@ const UserAverageSessions = () => {
       </svg>
 
       <LineChart
-        width={230}
-        height={260}
+        width={213}
+        height={220}
         data={transformedData}
         margin={{ top: 70, right: 30, left: 20, bottom: 5 }}
         onMouseMove={handleMouseMove}
@@ -170,8 +170,8 @@ const UserAverageSessions = () => {
         <rect
           x={maskPosition}
           y={0}
-          width={230 - maskPosition}
-          height={260}
+          width={213 - maskPosition}
+          height={220}
           fill={surfaceColor}
         />
         <XAxis
@@ -202,8 +202,8 @@ const UserAverageSessions = () => {
         <rect
           x={0}
           y={0}
-          width={258}
-          height={263}
+          width={213}
+          height={220}
           fill="transparent"
           mask="url(#mask)"
         />

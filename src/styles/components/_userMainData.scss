@@ -3,21 +3,19 @@
 }
 
 /**************Energy container**************************/
-.energy_container{
-    margin-left: 31px;
-}
+
 
 .energy_info{
     display: flex;
     align-items: center;
     background-color: rgba(251, 251, 251, 1);
-    width: 218px;
+    width: 258px;
     height: 124px;
     margin-bottom: 49px;
     &--logo{
         width: 60px;
         height: 60px;
-        margin: 20px;
+        margin: 32px;
     }
 }
 
@@ -26,7 +24,8 @@
     &--number{
         font-family: global.$font1;
         font-weight: 700;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
+        line-height: 24px;
     }
     &--name{
         font-family: global.$font1;

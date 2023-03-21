@@ -12,12 +12,12 @@ const UserPerformance = () => {
    *  Un objet contenant les traductions des noms de catégories en anglais vers le français.
    */
   const translations = {
-    cardio: "cardio",
-    energy: "énergie",
-    endurance: "endurance",
-    strength: "force",
-    speed: "vitesse",
-    intensity: "intensité",
+    cardio: "Cardio",
+    energy: "Energie",
+    endurance: "Endurance",
+    strength: "Force",
+    speed: "Vitesse",
+    intensity: "Intensité",
   };
 
   /**
@@ -56,15 +56,23 @@ const UserPerformance = () => {
   return (
     <div className="radarChart">
       <RadarChart
-        cx={125}
-        cy={110}
+        className="my-radar-chart"
+        cx={105}
+        cy={85}
         outerRadius={65}
-        width={250}
-        height={290}
+        width={213}
+        height={220}
         data={radarChartData}
+        innerRadius="5%"
       >
-        <PolarGrid />
-        <PolarAngleAxis dataKey="category" tick={{ ...axisLabelStyle }} />
+        <PolarGrid radialLines={false} />
+        <PolarAngleAxis
+          dataKey="category"
+          tickLine={false}
+          tickSize={10}
+          dy={3}
+          tick={{ ...axisLabelStyle }}
+        />
 
         <Radar
           name="Performance"

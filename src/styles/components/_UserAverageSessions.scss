@@ -1,9 +1,10 @@
 .average_session{
     position: relative;
+    width: 213px;
     &--title{
         position: absolute;
         margin: 0;
-        bottom: 200px;
+        bottom: 162px;
         font-family: global.$font1;
         font-weight: 500;
         font-size: 0.9rem;
