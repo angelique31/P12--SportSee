@@ -3,7 +3,7 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 import { USER_PERFORMANCE } from "../mockedData";
 import { useParams } from "react-router-dom";
 
-const UserPerformance = () => {
+const RadarChartUser = () => {
   const { userId } = useParams();
   const userPerformance = USER_PERFORMANCE.find(
     (item) => item.userId === parseInt(userId)
@@ -85,4 +85,4 @@ const UserPerformance = () => {
   );
 };
 
-export default UserPerformance;
+export default RadarChartUser;

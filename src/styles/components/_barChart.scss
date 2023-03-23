@@ -1,9 +1,19 @@
+.responsive_barChart{
+    margin-top: 100px;
+    
+    position: absolute;
+    // left: 600px;
+}
+
 .recharts{
     background-color: rgba(251, 251, 251, 1);
     width: 700px;
     height: 320px;
     border-radius: 5px;
     margin-right: 30px;
+   position: relative;
+  
+
 }
 
 .data_title{
@@ -35,7 +45,7 @@
 }
 
 .my-bar-chart{
-    margin-top: 80px;
+    margin-top: 140px;
 }
 
 .recharts-default-legend{

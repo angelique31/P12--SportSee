@@ -1,11 +1,11 @@
 import React from "react";
-import UserActivity from "../components/UserActivity";
+import BarChartUser from "../components/BarChartUser";
 
-import UserAverageSessions from "../components/UserAverageSessions";
-import UserPerformance from "../components/UserPerformance";
+import LineChartUser from "../components/LineChartUser";
+import RadarChartUser from "../components/RadarChartUser";
 import UserName from "../components/UserName";
 import UserMainData from "../components/UserMainData";
-import UserScore from "../components/UserScore";
+import RadialBarChartUser from "../components/RadialBarChartUser ";
 
 const MockApi = () => {
   return (
@@ -13,11 +13,11 @@ const MockApi = () => {
       <UserName />
       <section className="user_data">
         <div className="user_data--activity">
-          <UserActivity />
+          <BarChartUser />
           <div className="user_performances">
-            <UserAverageSessions />
-            <UserPerformance />
-            <UserScore />
+            <LineChartUser />
+            <RadarChartUser />
+            <RadialBarChartUser />
           </div>
         </div>
 

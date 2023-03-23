@@ -104,7 +104,7 @@ const CustomCursor = () => null;
  *Composant affichant la durée moyenne des sessions d'un utilisateur sous forme de graphique à ligne.
  * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
  */
-const UserAverageSessions = () => {
+const LineChartUser = () => {
   const { userId } = useParams();
   const transformedData = transformData(USER_AVERAGE_SESSIONS);
   const [surfaceColor, setSurfaceColor] = React.useState(
@@ -142,7 +142,7 @@ const UserAverageSessions = () => {
               x={maskPosition}
               y={0}
               width={213 - maskPosition}
-              height={220}
+              height={233}
               fill="url(#maskGradient)"
             />
           </mask>
@@ -155,7 +155,7 @@ const UserAverageSessions = () => {
 
       <LineChart
         width={213}
-        height={220}
+        height={233}
         data={transformedData}
         margin={{ top: 70, right: 30, left: 20, bottom: 5 }}
         onMouseMove={handleMouseMove}
@@ -171,7 +171,7 @@ const UserAverageSessions = () => {
           x={maskPosition}
           y={0}
           width={213 - maskPosition}
-          height={220}
+          height={233}
           fill={surfaceColor}
         />
         <XAxis
@@ -212,4 +212,4 @@ const UserAverageSessions = () => {
   );
 };
 
-export default UserAverageSessions;
+export default LineChartUser;
