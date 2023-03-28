@@ -1,5 +1,8 @@
-import React from "react";
-import { USER_MAIN_DATA } from "../mockedData";
+import React, { useState, useEffect } from "react";
+// import { USER_MAIN_DATA } from "../mockedData";
+import ApiService from "../api/ApiService";
+import User from "../api/UserMainDataClass";
+
 import { useParams } from "react-router-dom";
 import caloriIcon from "../assets/iconsEnergy/calories-icon.png";
 import proteinIcon from "../assets/iconsEnergy/protein-icon.png";
@@ -8,7 +11,20 @@ import burgerIcon from "../assets/iconsEnergy/burger-icon.png";
 
 const UserMainData = () => {
   const { userId } = useParams();
-  const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
+  // const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await ApiService.getUser(userId);
+      // console.log(data);
+      const formattedUser = new User(data.data);
+      // console.log(formattedUser);
+      setUser(formattedUser);
+    };
+
+    fetchData();
+  }, [userId]);
 
   return (
     <>

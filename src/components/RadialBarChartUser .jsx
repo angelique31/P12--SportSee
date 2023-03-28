@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import {
   RadialBarChart,
@@ -6,14 +6,35 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from "recharts";
-import { USER_MAIN_DATA } from "../mockedData";
+// import { USER_MAIN_DATA } from "../mockedData";
+import ApiService from "../api/ApiService";
+import User from "../api/UserMainDataClass";
 
 const RadialBarChartUser = () => {
   const { userId } = useParams();
-  const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
-  const score = user.todayScore
-    ? parseInt(user.todayScore * 100)
-    : parseInt(user.score * 100);
+  const [userScore, setUserScore] = useState(null);
+  // const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await ApiService.getUser(userId);
+      // console.log(data);
+
+      const formattedUserActivity = new User(data.data);
+      // console.log(formattedUserActivity);
+      setUserScore(formattedUserActivity);
+    }
+
+    fetchData();
+  }, [userId]);
+
+  // const score = userScore.todayScore
+  //   ? parseInt(userScore.todayScore * 100)
+  //   : parseInt(userScore.score * 100);
+
+  const score = userScore
+    ? parseInt((userScore.todayScore || userScore.score) * 100)
+    : 0;
 
   const data = [
     {
@@ -64,64 +85,3 @@ const RadialBarChartUser = () => {
 };
 
 export default RadialBarChartUser;
-
-/********************************* */
-
-// import React from "react";
-// import { useParams } from "react-router-dom";
-// import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-// import { USER_MAIN_DATA } from "../mockedData";
-
-// const UserScore = () => {
-//   const { userId } = useParams();
-//   const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
-//   const score = user.todayScore
-//     ? parseInt(user.todayScore * 100)
-//     : parseInt(user.score * 100);
-
-//   const data = [
-//     { value: score, fill: "#FF0000" },
-//     { value: 100 - score, fill: "#FFFFFF" },
-//   ];
-
-//   return (
-//     <div className="user_score">
-//       <h1>Score :</h1>
-
-//       <ResponsiveContainer
-//         className="user_score_container"
-//         width={213}
-//         height={220}
-//       >
-//         <PieChart>
-//           <Pie
-//             data={data}
-//             dataKey="value"
-//             cx="center"
-//             cy="center"
-//             innerRadius="90"
-//             outerRadius="100"
-//             cornerRadius="10"
-//             startAngle={90}
-//             endAngle={450}
-//           >
-//             {data.map((entry, index) => (
-//               <Cell key={index} fill={entry.fill} />
-//             ))}
-//           </Pie>
-//           <text
-//             x="50%"
-//             y="50%"
-//             textAnchor="middle"
-//             dominantBaseline="middle"
-//             style={{ fill: "#000000" }}
-//           >
-//             {score}% de votre objectif
-//           </text>
-//         </PieChart>
-//       </ResponsiveContainer>
-//     </div>
-//   );
-// };
-
-// export default UserScore;

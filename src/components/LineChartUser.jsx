@@ -1,7 +1,9 @@
-import React from "react";
-import { USER_AVERAGE_SESSIONS } from "../mockedData";
+import React, { useState, useEffect } from "react";
+// import { USER_AVERAGE_SESSIONS } from "../mockedData";
 import { useParams } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
+import LineChartClass from "../api/LineChartClass";
+import ApiService from "../api/ApiService";
 
 /**
  * Transforme les données brutes en un format adapté pour le graphique linéaire.
@@ -9,28 +11,28 @@ import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
  * @param {Array} data - Les données brutes, sous forme de tableau d'objets.
  * @returns {Array} Les données transformées, sous forme de tableau d'objets avec les durées de session pour chaque utilisateur pour chaque jour.
  */
-const transformData = (data) => {
-  const transformedData = [];
+// const transformData = (data) => {
+//   const transformedData = [];
 
-  data.forEach((user) => {
-    user.sessions.forEach((session) => {
-      const dayData = transformedData.find(
-        (entry) => entry.day === session.day
-      );
+//   data.forEach((user) => {
+//     user.sessions.forEach((session) => {
+//       const dayData = transformedData.find(
+//         (entry) => entry.day === session.day
+//       );
 
-      if (dayData) {
-        dayData[`User${user.userId}`] = session.sessionLength;
-      } else {
-        transformedData.push({
-          day: session.day,
-          [`User${user.userId}`]: session.sessionLength,
-        });
-      }
-    });
-  });
+//       if (dayData) {
+//         dayData[`User${user.userId}`] = session.sessionLength;
+//       } else {
+//         transformedData.push({
+//           day: session.day,
+//           [`User${user.userId}`]: session.sessionLength,
+//         });
+//       }
+//     });
+//   });
 
-  return transformedData.sort((a, b) => a.day - b.day);
-};
+//   return transformedData.sort((a, b) => a.day - b.day);
+// };
 
 /**
  * Tableau contenant les lettres correspondant aux jours de la semaine.
@@ -88,7 +90,18 @@ const CustomizedAxisTick = ({ x, y, payload }) => {
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="custom_tooltip_session">
+      <div
+        className="custom_tooltip_session"
+        style={{
+          color: "black",
+          fontSize: "0.5rem",
+          fontFamily: "Roboto",
+          fontWeight: "500",
+          backgroundColor: "rgba(255, 255, 255, 1)",
+          width: "39px",
+          height: "25px",
+        }}
+      >
         <p className="custom_tooltip_session--text">{`${payload[0].value} min`}</p>
       </div>
     );
@@ -104,13 +117,31 @@ const CustomCursor = () => null;
  *Composant affichant la durée moyenne des sessions d'un utilisateur sous forme de graphique à ligne.
  * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
  */
-const LineChartUser = () => {
+const LineChartUser = ({ sessions }) => {
   const { userId } = useParams();
-  const transformedData = transformData(USER_AVERAGE_SESSIONS);
+  // const transformedData = transformData(USER_AVERAGE_SESSIONS);
+
+  const [transformedData, setTransformedData] = useState(null);
   const [surfaceColor, setSurfaceColor] = React.useState(
     "rgba(255, 0, 0, 0.4)"
   );
   const [maskPosition, setMaskPosition] = React.useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await ApiService.getUserAverageSessions(userId);
+      console.log(data);
+
+      const formattedUserAverageSessions = new LineChartClass(data.data);
+      console.log(formattedUserAverageSessions);
+
+      setTransformedData(formattedUserAverageSessions);
+    }
+
+    fetchData();
+  }, [userId]);
+
+  console.log(transformedData);
 
   /**
    * Gère le mouvement de la souris sur le graphique et modifie la couleur de fond
@@ -188,14 +219,15 @@ const LineChartUser = () => {
           }}
           hide
           domain={[10, 60]}
-          padding={{ top: 20 }}
+          padding={{ top: 20, bottom: 30 }}
         />
         <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
 
         <Line
-          type="monotone"
           dataKey={`User${userId}`}
           stroke="url(#gradient)"
+          type="natural"
+          scale="band"
           strokeWidth={2}
           dot={false}
         />

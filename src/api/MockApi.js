@@ -2,7 +2,7 @@ import React from "react";
 import BarChartUser from "../components/BarChartUser";
 
 import LineChartUser from "../components/LineChartUser";
-import RadarChartUser from "../components/RadarChartUser";
+import RadarChartUser from "../components/RadarChartUser/RadarChartUser";
 import UserName from "../components/UserName";
 import UserMainData from "../components/UserMainData";
 import RadialBarChartUser from "../components/RadialBarChartUser ";

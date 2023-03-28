@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
-import { USER_PERFORMANCE } from "../mockedData";
+// import { USER_PERFORMANCE } from "../../mockedData";
 import { useParams } from "react-router-dom";
+import ApiService from "../../api/ApiService";
+import UserPerformance from "../../api/RadarChartClass";
+// import { dataMocked } from "../api/ApiSetting";
 
 const RadarChartUser = () => {
   const { userId } = useParams();
-  const userPerformance = USER_PERFORMANCE.find(
-    (item) => item.userId === parseInt(userId)
-  );
+  //   const userPerformance = USER_PERFORMANCE.find(
+  //     (item) => item.userId === parseInt(userId)
+  //   );
+
+  const [userPerformance, setUserPerformance] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const performanceObject = await ApiService.getUserPerformance(userId);
+      console.log("PerformanceObject from API:", performanceObject);
+      const performanceData = performanceObject.data.data;
+      // console.log(performanceData);
+      const kind = performanceObject.data.kind;
+      // console.log(kind);
+
+      const userPerformanceInstance = new UserPerformance(
+        userId,
+        kind,
+        performanceData
+      );
+      setUserPerformance(userPerformanceInstance);
+    }
+    fetchData();
+  }, [userId]);
+
   /**
    *  Un objet contenant les traductions des noms de catégories en anglais vers le français.
    */
@@ -38,13 +63,26 @@ const RadarChartUser = () => {
    * Le tableau est trié en fonction des angles pour positionner correctement les catégories dans le graphique.
    * @type {Array<{category: string, value: number, angle: number}>}
    */
-  const radarChartData = userPerformance.data
-    .map((item) => ({
-      category: translations[userPerformance.kind[item.kind]],
-      value: item.value,
-      angle: sortOrder[item.kind],
-    }))
-    .sort((a, b) => a.angle - b.angle);
+  //   const radarChartData = userPerformance.data
+  //     .map((item) => ({
+  //       category: translations[userPerformance.kind[item.kind]],
+  //       value: item.value,
+  //       angle: sortOrder[item.kind],
+  //     }))
+  //     .sort((a, b) => a.angle - b.angle);
+  //   console.log(userPerformance);
+
+  const radarChartData = userPerformance
+    ? userPerformance.data
+
+        .map((item) => ({
+          category: translations[item.kind],
+          value: item.value,
+          angle: sortOrder[item.kind],
+        }))
+        .sort((a, b) => a.angle - b.angle)
+    : null;
+  console.log("radarChartData:", radarChartData);
 
   const axisLabelStyle = {
     fill: "rgba(255, 255, 255, 1)",
@@ -56,6 +94,7 @@ const RadarChartUser = () => {
   return (
     <div className="radarChart">
       <RadarChart
+        key={userId}
         className="my-radar-chart"
         cx={105}
         cy={85}

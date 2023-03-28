@@ -1,5 +1,5 @@
-import React from "react";
-import { USER_ACTIVITY } from "../mockedData";
+import React, { useState, useEffect } from "react";
+// import { USER_ACTIVITY } from "../mockedData";
 import { useParams } from "react-router-dom";
 import {
   BarChart,
@@ -10,18 +10,40 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
+import ApiService from "../api/ApiService";
+import BarChartClass from "../api/BarChartClass";
+// import { dataMocked } from "../api/ApiSetting";
 
 const BarChartUser = () => {
   const { userId } = useParams();
-  const userActivity = USER_ACTIVITY.find(
-    (item) => item.userId === parseInt(userId)
-  );
+  const [userActivity, setUserActivity] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await ApiService.getUserActivity(userId);
+      // console.log(data);
+
+      const formattedUserActivity = new BarChartClass(data.data);
+      // console.log(formattedUserActivity);
+      setUserActivity(formattedUserActivity);
+    }
+
+    fetchData();
+  }, [userId]);
+
+  // console.log(userActivity);
+
+  // const userActivity = USER_ACTIVITY.find(
+  //   (item) => item.userId === parseInt(userId)
+  // );
 
   const data = userActivity?.sessions.map((session) => ({
     name: session.day ? new Date(session.day).getDate().toString() : "",
     weight: session.kilogram,
     calories: session.calories,
   }));
+  // console.log(data);
+
   /**
    * Fonction pour personnaliser le tooltip (infobulle)
    * @param {*} param0
@@ -59,56 +81,76 @@ const BarChartUser = () => {
       </div>
 
       {userActivity && (
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="100%" height={260}>
           <BarChart
             className="my-bar-chart"
-            width={702}
-            height={206}
+            barSize={7}
             data={data}
             margin={{ left: 30, bottom: 40 }}
           >
             <CartesianGrid
-              strokeDasharray="3"
+              strokeDasharray="1"
               horizontal={true}
               vertical={false}
               dot={true}
+              // horizontalPoints={[68]}
             />
             <XAxis
               dataKey="name"
               type="number"
               domain={["dataMin", "dataMax"]}
-              tick={{ fill: "#9B9EAC" }}
+              tick={{
+                fill: "#9B9EAC",
+                fontFamily: "Roboto",
+                fontWeight: 500,
+                fontSize: "14px",
+                textAlign: "center",
+                dy: 5,
+              }}
               stroke="#DEDEDE"
               tickSize={0}
               fontSize={12}
               tickMargin={10}
               padding={{ left: 15, right: 10 }}
+              ticks={[1, 2, 3, 4, 5, 6, 7]}
             />
-            <YAxis domain={[65, 100]} hide={true} />
             <YAxis
-              yAxisId="right"
-              orientation="right"
-              position="right"
-              ticks={[100, 280, 480]}
-              interval={0}
-              axisLine={false}
-              tickMargin={15}
+              yAxisId="weight"
+              type="number"
+              domain={["dataMin - 3", "dataMax + 3"]}
               tickLine={false}
-              tickCount={-100}
+              axisLine={false}
+              tickMargin={20}
+              orientation="right"
+              tick={{
+                fill: "#9B9EAC",
+                fontFamily: "Roboto",
+                fontWeight: 500,
+                fontSize: "14px",
+                textAlign: "center",
+                dy: 5,
+              }}
+
+              // domain={[65, 100]}
+            />
+            <YAxis
+              yAxisId="calories"
+              type="number"
+              domain={["dataMin - 50", "dataMax + 50"]}
+              hide
             />
             <Tooltip content={<CustomTooltip />} />
             <Bar
+              yAxisId="weight"
               dataKey="weight"
               fill="rgba(40, 45, 48, 1)"
-              barSize={7}
               radius={[5, 5, 0, 0]}
             />
 
             <Bar
+              yAxisId="calories"
               dataKey="calories"
               fill="rgba(230, 0, 0, 1)"
-              yAxisId="right"
-              barSize={7}
               radius={[5, 5, 0, 0]}
             ></Bar>
           </BarChart>
