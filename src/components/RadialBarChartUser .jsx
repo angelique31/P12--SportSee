@@ -1,39 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import {
   RadialBarChart,
   RadialBar,
   PolarAngleAxis,
   ResponsiveContainer,
 } from "recharts";
-// import { USER_MAIN_DATA } from "../mockedData";
-import ApiService from "../api/ApiService";
-import User from "../api/UserMainDataClass";
 
-const RadialBarChartUser = () => {
-  const { userId } = useParams();
-  const [userScore, setUserScore] = useState(null);
-  // const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await ApiService.getUser(userId);
-      // console.log(data);
-
-      const formattedUserActivity = new User(data.data);
-      // console.log(formattedUserActivity);
-      setUserScore(formattedUserActivity);
-    }
-
-    fetchData();
-  }, [userId]);
-
+const RadialBarChartUser = ({ userScore }) => {
+  // console.log("userScore prop:", userScore);
+  // fonctionne pour MockApi :
   // const score = userScore.todayScore
   //   ? parseInt(userScore.todayScore * 100)
   //   : parseInt(userScore.score * 100);
 
+  // fonctionne avec l'API
+  // const score = userScore
+  //   ? parseInt((userScore.todayScore || userScore.score) * 100)
+  //   : 0;
+
+  // Cela permettra d'utiliser la bonne logique de calcul en fonction de l'API utilisée:
   const score = userScore
-    ? parseInt((userScore.todayScore || userScore.score) * 100)
+    ? parseInt((userScore.todayScore ?? userScore.score) * 100)
     : 0;
 
   const data = [

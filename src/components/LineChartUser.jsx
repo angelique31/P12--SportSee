@@ -12,10 +12,14 @@ import ApiService from "../api/ApiService";
  * @returns {Array} Les données transformées, sous forme de tableau d'objets avec les durées de session pour chaque utilisateur pour chaque jour.
  */
 // const transformData = (data) => {
+//   console.log("transformData input:", data);
 //   const transformedData = [];
+//   console.log("Data length:", data.length);
 
 //   data.forEach((user) => {
+//     console.log("user:", user);
 //     user.sessions.forEach((session) => {
+//       console.log("session:", session);
 //       const dayData = transformedData.find(
 //         (entry) => entry.day === session.day
 //       );
@@ -30,7 +34,7 @@ import ApiService from "../api/ApiService";
 //       }
 //     });
 //   });
-
+//   console.log("transformData output:", transformedData);
 //   return transformedData.sort((a, b) => a.day - b.day);
 // };
 
@@ -117,7 +121,7 @@ const CustomCursor = () => null;
  *Composant affichant la durée moyenne des sessions d'un utilisateur sous forme de graphique à ligne.
  * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
  */
-const LineChartUser = ({ sessions }) => {
+const LineChartUser = () => {
   const { userId } = useParams();
   // const transformedData = transformData(USER_AVERAGE_SESSIONS);
 
@@ -129,13 +133,26 @@ const LineChartUser = ({ sessions }) => {
 
   useEffect(() => {
     async function fetchData() {
+      // const data = await ApiService.getUserAverageSessions(userId);
+      // console.log(data);
+
+      // const formattedUserAverageSessions = new LineChartClass(data.data);
+      // console.log(formattedUserAverageSessions);
+
+      // setTransformedData(formattedUserAverageSessions);
+
       const data = await ApiService.getUserAverageSessions(userId);
-      console.log(data);
-
       const formattedUserAverageSessions = new LineChartClass(data.data);
-      console.log(formattedUserAverageSessions);
+      // const transformedData = formattedUserAverageSessions.transformedData;
+      // console.log(transformedData);
+      const transformedData = formattedUserAverageSessions.transformedData.map(
+        (entry) => ({
+          day: entry.day,
+          [`User${userId}`]: entry[userId],
+        })
+      );
 
-      setTransformedData(formattedUserAverageSessions);
+      setTransformedData(transformedData);
     }
 
     fetchData();

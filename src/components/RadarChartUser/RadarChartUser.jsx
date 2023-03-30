@@ -1,38 +1,6 @@
-import React, { useState, useEffect } from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
-// import { USER_PERFORMANCE } from "../../mockedData";
-import { useParams } from "react-router-dom";
-import ApiService from "../../api/ApiService";
-import UserPerformance from "../../api/RadarChartClass";
-// import { dataMocked } from "../api/ApiSetting";
 
-const RadarChartUser = () => {
-  const { userId } = useParams();
-  //   const userPerformance = USER_PERFORMANCE.find(
-  //     (item) => item.userId === parseInt(userId)
-  //   );
-
-  const [userPerformance, setUserPerformance] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const performanceObject = await ApiService.getUserPerformance(userId);
-      console.log("PerformanceObject from API:", performanceObject);
-      const performanceData = performanceObject.data.data;
-      // console.log(performanceData);
-      const kind = performanceObject.data.kind;
-      // console.log(kind);
-
-      const userPerformanceInstance = new UserPerformance(
-        userId,
-        kind,
-        performanceData
-      );
-      setUserPerformance(userPerformanceInstance);
-    }
-    fetchData();
-  }, [userId]);
-
+const RadarChartUser = ({ userPerformance }) => {
   /**
    *  Un objet contenant les traductions des noms de catégories en anglais vers le français.
    */
@@ -57,32 +25,29 @@ const RadarChartUser = () => {
     6: 30, // speed
   };
 
-  /**
-   * Un tableau d'objets contenant les données formatées pour être utilisées dans le composant RadarChart.
-   * Chaque objet inclut la catégorie traduite, la valeur de performance et l'angle associé à la catégorie.
-   * Le tableau est trié en fonction des angles pour positionner correctement les catégories dans le graphique.
-   * @type {Array<{category: string, value: number, angle: number}>}
-   */
-  //   const radarChartData = userPerformance.data
-  //     .map((item) => ({
-  //       category: translations[userPerformance.kind[item.kind]],
-  //       value: item.value,
-  //       angle: sortOrder[item.kind],
-  //     }))
-  //     .sort((a, b) => a.angle - b.angle);
-  //   console.log(userPerformance);
+  //Fonctionne avec MockAPI
+  // const radarChartData = userPerformance.data
+  //   .map((item) => ({
+  //     category: translations[userPerformance.kind[item.kind]],
+  //     value: item.value,
+  //     angle: sortOrder[item.kind],
+  //   }))
+  //   .sort((a, b) => a.angle - b.angle);
+  // console.log(userPerformance);
+
+  //Fonctionne avec l'appel à l'API :
+  const keys = Object.keys(sortOrder); // ['5', '4', '3', '2', '1', '6']
 
   const radarChartData = userPerformance
     ? userPerformance.data
-
-        .map((item) => ({
+        .map((item, index) => ({
           category: translations[item.kind],
           value: item.value,
-          angle: sortOrder[item.kind],
+          angle: sortOrder[keys[index]],
         }))
         .sort((a, b) => a.angle - b.angle)
     : null;
-  console.log("radarChartData:", radarChartData);
+  // console.log("radarChartData:", radarChartData);
 
   const axisLabelStyle = {
     fill: "rgba(255, 255, 255, 1)",
@@ -94,7 +59,8 @@ const RadarChartUser = () => {
   return (
     <div className="radarChart">
       <RadarChart
-        key={userId}
+        // key={userId}
+        key={userPerformance ? userPerformance.userId : null}
         className="my-radar-chart"
         cx={105}
         cy={85}

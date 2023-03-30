@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from "react";
-// import { USER_ACTIVITY } from "../mockedData";
-import { useParams } from "react-router-dom";
 import {
   BarChart,
   Bar,
@@ -10,33 +7,8 @@ import {
   CartesianGrid,
   ResponsiveContainer,
 } from "recharts";
-import ApiService from "../api/ApiService";
-import BarChartClass from "../api/BarChartClass";
-// import { dataMocked } from "../api/ApiSetting";
 
-const BarChartUser = () => {
-  const { userId } = useParams();
-  const [userActivity, setUserActivity] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await ApiService.getUserActivity(userId);
-      // console.log(data);
-
-      const formattedUserActivity = new BarChartClass(data.data);
-      // console.log(formattedUserActivity);
-      setUserActivity(formattedUserActivity);
-    }
-
-    fetchData();
-  }, [userId]);
-
-  // console.log(userActivity);
-
-  // const userActivity = USER_ACTIVITY.find(
-  //   (item) => item.userId === parseInt(userId)
-  // );
-
+const BarChartUser = ({ userActivity }) => {
   const data = userActivity?.sessions.map((session) => ({
     name: session.day ? new Date(session.day).getDate().toString() : "",
     weight: session.kilogram,
@@ -146,7 +118,6 @@ const BarChartUser = () => {
               fill="rgba(40, 45, 48, 1)"
               radius={[5, 5, 0, 0]}
             />
-
             <Bar
               yAxisId="calories"
               dataKey="calories"

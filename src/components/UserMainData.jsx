@@ -1,34 +1,12 @@
-import React, { useState, useEffect } from "react";
-// import { USER_MAIN_DATA } from "../mockedData";
-import ApiService from "../api/ApiService";
-import User from "../api/UserMainDataClass";
-
-import { useParams } from "react-router-dom";
 import caloriIcon from "../assets/iconsEnergy/calories-icon.png";
 import proteinIcon from "../assets/iconsEnergy/protein-icon.png";
 import appleIcon from "../assets/iconsEnergy/apple-icon.png";
 import burgerIcon from "../assets/iconsEnergy/burger-icon.png";
 
-const UserMainData = () => {
-  const { userId } = useParams();
-  // const user = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await ApiService.getUser(userId);
-      // console.log(data);
-      const formattedUser = new User(data.data);
-      // console.log(formattedUser);
-      setUser(formattedUser);
-    };
-
-    fetchData();
-  }, [userId]);
-
+const UserMainData = ({ userData }) => {
   return (
     <>
-      {user && (
+      {userData && (
         <div className="energy_container">
           <div className="energy_info">
             <img
@@ -38,7 +16,7 @@ const UserMainData = () => {
             />
             <div className="info_calorie">
               <p className="info_calorie--number">
-                {user.keyData.calorieCount.toLocaleString("en-US", {
+                {userData.keyData.calorieCount.toLocaleString("en-US", {
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 0,
                 })}
@@ -55,7 +33,7 @@ const UserMainData = () => {
             />
             <div className="info_calorie">
               <p className="info_calorie--number">
-                {user.keyData.proteinCount}g
+                {userData.keyData.proteinCount}g
               </p>
               <p className="info_calorie--name">Protéines</p>
             </div>
@@ -68,7 +46,7 @@ const UserMainData = () => {
             />
             <div className="info_calorie">
               <p className="info_calorie--number">
-                {user.keyData.carbohydrateCount}g
+                {userData.keyData.carbohydrateCount}g
               </p>
               <p className="info_calorie--name">glucides</p>
             </div>
@@ -80,7 +58,9 @@ const UserMainData = () => {
               alt="logo burger"
             />
             <div className="info_calorie">
-              <p className="info_calorie--number">{user.keyData.lipidCount}g</p>
+              <p className="info_calorie--number">
+                {userData.keyData.lipidCount}g
+              </p>
               <p className="info_calorie--name">lipides</p>
             </div>
           </div>

@@ -1,21 +1,36 @@
 import { dataMocked } from "./ApiSetting";
-import { USER_ACTIVITY, USER_PERFORMANCE } from "../mockedData";
+import {
+  USER_ACTIVITY,
+  USER_PERFORMANCE,
+  USER_AVERAGE_SESSIONS,
+} from "../mockedData";
+import { USER_MAIN_DATA } from "../mockedData";
 
 const ApiService = {
   getUser: async (userId) => {
-    const response = await fetch(`http://localhost:3000/user/${userId}`);
-    const data = await response.json();
+    if (dataMocked) {
+      const userData = USER_MAIN_DATA.find(
+        (item) => item.id === parseInt(userId)
+      );
+      return { data: userData };
+    } else {
+      const response = await fetch(`http://localhost:3000/user/${userId}`);
+      const data = await response.json();
 
-    return data;
+      return data;
+    }
   },
 
-  // getUserActivity: async (userId) => {
-  //   const response = await fetch(
-  //     `http://localhost:3000/user/${userId}/activity`
-  //   );
-  //   const data = await response.json();
-
-  //   return data;
+  // getUserTest: async (userId, mock) => {
+  //   let response = {};
+  //   if (mock) {
+  //     response = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
+  //   } else {
+  //     const data = await fetch(`http://localhost:3000/user/${userId}`);
+  //     response = await data.json();
+  //   }
+  //   console.log(response);
+  //   return response;
   // },
 
   getUserActivity: async (userId) => {
@@ -34,23 +49,20 @@ const ApiService = {
   },
 
   getUserAverageSessions: async (userId) => {
-    const response = await fetch(
-      `http://localhost:3000/user/${userId}/average-sessions`
-    );
-    const data = await response.json();
-    // console.log(data);
-    return data;
+    if (dataMocked) {
+      const userAverageSessions = USER_AVERAGE_SESSIONS.find(
+        (item) => item.userId === parseInt(userId)
+      );
+      return { data: userAverageSessions };
+    } else {
+      const response = await fetch(
+        `http://localhost:3000/user/${userId}/average-sessions`
+      );
+      const data = await response.json();
+      console.log(data);
+      return data;
+    }
   },
-
-  //   getUserPerformance: async (userId) => {
-  //     const response = await fetch(
-  //       `http://localhost:3000/user/${userId}/performance`
-  //     );
-  //     const data = await response.json();
-  //     console.log(data);
-  //     return data;
-  //   },
-  // };
 
   getUserPerformance: async (userId) => {
     if (dataMocked) {
@@ -63,6 +75,7 @@ const ApiService = {
         `http://localhost:3000/user/${userId}/performance`
       );
       const data = await response.json();
+      // console.log(data);
       return data;
     }
   },

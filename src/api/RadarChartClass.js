@@ -1,5 +1,6 @@
 class UserPerformance {
   constructor(userId, kind, performanceData) {
+    // console.log(userId, kind, performanceData);
     this.userId = userId;
     this.kind = kind;
     this.data = performanceData.map((item) => {

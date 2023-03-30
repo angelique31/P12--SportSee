@@ -3,7 +3,7 @@ import React from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BarChartUser from "./components/BarChartUser";
-import Dashboard from "./pages/dashbord/Dashboard";
+import Dashboard from "./pages/dashbord/DashboardUser";
 import Home from "./pages/home/Home";
 
 const App = () => {
