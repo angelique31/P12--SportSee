@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import caloriIcon from "../assets/iconsEnergy/calories-icon.png";
 import proteinIcon from "../assets/iconsEnergy/protein-icon.png";
 import appleIcon from "../assets/iconsEnergy/apple-icon.png";
@@ -69,5 +70,15 @@ const UserMainData = ({ userData }) => {
     </>
   );
 };
-
+//On vérifie que userData est un objet avec la propriété keyData qui est également un objet contenant les propriétés calorieCount, proteinCount, carbohydrateCount, et lipidCount, toutes de type nombre.
+UserMainData.propTypes = {
+  userData: PropTypes.shape({
+    keyData: PropTypes.shape({
+      calorieCount: PropTypes.number,
+      proteinCount: PropTypes.number,
+      carbohydrateCount: PropTypes.number,
+      lipidCount: PropTypes.number,
+    }),
+  }),
+};
 export default UserMainData;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   BarChart,
   Bar,
@@ -102,8 +103,6 @@ const BarChartUser = ({ userActivity }) => {
                 textAlign: "center",
                 dy: 5,
               }}
-
-              // domain={[65, 100]}
             />
             <YAxis
               yAxisId="calories"
@@ -131,4 +130,7 @@ const BarChartUser = ({ userActivity }) => {
   );
 };
 
+BarChartUser.propTypes = {
+  userActivity: PropTypes.object,
+};
 export default BarChartUser;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   RadialBarChart,
   RadialBar,
@@ -6,20 +7,8 @@ import {
 } from "recharts";
 
 const RadialBarChartUser = ({ userScore }) => {
-  // console.log("userScore prop:", userScore);
-  // fonctionne pour MockApi :
-  // const score = userScore.todayScore
-  //   ? parseInt(userScore.todayScore * 100)
-  //   : parseInt(userScore.score * 100);
-
-  // fonctionne avec l'API
-  // const score = userScore
-  //   ? parseInt((userScore.todayScore || userScore.score) * 100)
-  //   : 0;
-
-  // Cela permettra d'utiliser la bonne logique de calcul en fonction de l'API utilisée:
   const score = userScore
-    ? parseInt((userScore.todayScore ?? userScore.score) * 100)
+    ? parseInt((userScore.todayScore || userScore.score) * 100)
     : 0;
 
   const data = [
@@ -70,4 +59,7 @@ const RadialBarChartUser = ({ userScore }) => {
   );
 };
 
+RadialBarChartUser.propTypes = {
+  userScore: PropTypes.object,
+};
 export default RadialBarChartUser;

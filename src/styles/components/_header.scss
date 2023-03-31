@@ -1,13 +1,13 @@
 .nav_container{
     display: flex;
+    justify-content: space-between;
     height: 91px;
     background-color: global.$black;
-    min-width: 1200px;
+    // min-width: 1200px;
+    width: 100vw;
     &--logo{
-        width: 178px;
-        height: 61px;
-        margin-left: 29px;
-        margin-top: 18px;
+        height: 100%;
+        padding: 20px;
         cursor: pointer;
     }
     &--title{
@@ -15,6 +15,8 @@
         justify-content: space-around;
         width: 100%;
         align-items: center;
+        
+
     }
 }
 
@@ -28,7 +30,7 @@ li{
 
 .nav_link{
     font-family: global.$font1;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     color: white;
     cursor: pointer;

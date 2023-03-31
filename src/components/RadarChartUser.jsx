@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 
 const RadarChartUser = ({ userPerformance }) => {
@@ -25,17 +26,6 @@ const RadarChartUser = ({ userPerformance }) => {
     6: 30, // speed
   };
 
-  //Fonctionne avec MockAPI
-  // const radarChartData = userPerformance.data
-  //   .map((item) => ({
-  //     category: translations[userPerformance.kind[item.kind]],
-  //     value: item.value,
-  //     angle: sortOrder[item.kind],
-  //   }))
-  //   .sort((a, b) => a.angle - b.angle);
-  // console.log(userPerformance);
-
-  //Fonctionne avec l'appel à l'API :
   const keys = Object.keys(sortOrder); // ['5', '4', '3', '2', '1', '6']
 
   const radarChartData = userPerformance
@@ -59,7 +49,6 @@ const RadarChartUser = ({ userPerformance }) => {
   return (
     <div className="radarChart">
       <RadarChart
-        // key={userId}
         key={userPerformance ? userPerformance.userId : null}
         className="my-radar-chart"
         cx={105}
@@ -88,6 +77,9 @@ const RadarChartUser = ({ userPerformance }) => {
       </RadarChart>
     </div>
   );
+};
+RadarChartUser.propTypes = {
+  userPerformance: PropTypes.object,
 };
 
 export default RadarChartUser;

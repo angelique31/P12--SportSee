@@ -1,5 +1,5 @@
 import React from "react";
-// import { USER_AVERAGE_SESSIONS } from "../mockedData";
+import PropTypes from "prop-types";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
 /**
@@ -86,9 +86,6 @@ const CustomCursor = () => null;
  * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
  */
 const LineChartUser = ({ transformedData, userId }) => {
-  // const { userId } = useParams();
-  // const transformedData = transformData(USER_AVERAGE_SESSIONS);
-
   const [surfaceColor, setSurfaceColor] = React.useState(
     "rgba(255, 0, 0, 0.4)"
   );
@@ -193,6 +190,11 @@ const LineChartUser = ({ transformedData, userId }) => {
       </LineChart>
     </div>
   );
+};
+
+LineChartUser.propTypes = {
+  transformedData: PropTypes.array,
+  userId: PropTypes.number,
 };
 
 export default LineChartUser;

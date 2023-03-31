@@ -84,7 +84,7 @@ const Dashboard = () => {
               <div className="user_performances">
                 {/* <LineChartUser /> */}
                 <LineChartUser
-                  userId={userId}
+                  userId={parseInt(userId)} // convertir userId en nombre avant de le passer au composant LineChartUser
                   transformedData={transformedData}
                 />
                 <RadarChartUser userPerformance={userPerformance} />

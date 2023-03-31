@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 const UserName = ({ userName }) => {
   return (
     <div className="user_title">
@@ -11,4 +12,9 @@ const UserName = ({ userName }) => {
   );
 };
 
+UserName.propTypes = {
+  userName: PropTypes.shape({
+    firstName: PropTypes.string,
+  }),
+};
 export default UserName;
