@@ -1,10 +1,19 @@
+/**
+ * A class for transforming session data into a format suitable for a line chart.
+ * Creates an instance of LineChartClass.
+ * @param {Object} data - An object containing session data.
+ */
 class LineChartClass {
   constructor(data) {
-    // console.log(data);
     this.id = data.userId;
     this.transformedData = this.transformData(data.sessions);
   }
 
+  /**
+   * Transforms session data into a format suitable for a line chart.
+   * @param {Array} sessions - An array of session objects.
+   * @returns {Array} - An array of objects representing session data in a format suitable for a line chart.
+   */
   transformData(sessions) {
     const transformedData = [];
 

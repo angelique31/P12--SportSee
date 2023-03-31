@@ -6,6 +6,12 @@ import {
 } from "../mockedData";
 import { USER_MAIN_DATA } from "../mockedData";
 
+/**
+ * ApiService is a utility module that provides functions to fetch data from a mock API or a real API.
+ * It has four methods for retrieving user data: getUser, getUserActivity, getUserAverageSessions, and getUserPerformance.
+ *
+ * @module ApiService
+ */
 const ApiService = {
   getUser: async (userId) => {
     if (dataMocked) {

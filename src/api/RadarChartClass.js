@@ -1,3 +1,11 @@
+/**
+ * Represents a user's performance in a specific area, such as strength or endurance.
+ * Creates an instance of UserPerformance.
+ * @param {number} userId - The ID of the user.
+ * @param {Object} kind - An object containing the types of performance, such as cardio or strength.
+ * @param {Array} performanceData - An array of objects containing performance data for each type.
+ */
+
 class UserPerformance {
   constructor(userId, kind, performanceData) {
     // console.log(userId, kind, performanceData);
