@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ApiService from "../../api/ApiService";
 import Header from "../../components/Header";
 import VerticalNavBar from "../../components/VerticalNavBar";
 import BarChartUser from "../../components/BarChartUser";
 import LineChartUser from "../../components/LineChartUser";
-import RadarChartUser from "../../components/RadarChartUser/RadarChartUser";
+import RadarChartUser from "../../components/RadarChartUser";
+import RadialBarChartUser from "../../components/RadialBarChartUser ";
 import UserName from "../../components/UserName";
 import UserMainData from "../../components/UserMainData";
-import RadialBarChartUser from "../../components/RadialBarChartUser ";
-import ApiService from "../../api/ApiService";
 import User from "../../api/UserMainDataClass";
 import BarChartClass from "../../api/BarChartClass";
 import UserPerformance from "../../api/RadarChartClass";
-import { useParams } from "react-router-dom";
+import LineChartClass from "../../api/LineChartClass";
 
 const Dashboard = () => {
   const { userId } = useParams();
@@ -20,15 +21,21 @@ const Dashboard = () => {
   const [userScore, setUserScore] = useState(null);
   const [userData, setUserMain] = useState(null);
   const [userPerformance, setUserPerformance] = useState(null);
+  const [transformedData, setTransformedData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const [userData, userActivityData, performanceData] = await Promise.all([
+      const [
+        userData,
+        userActivityData,
+        performanceData,
+        userAverageSessionsData,
+      ] = await Promise.all([
         ApiService.getUser(userId),
         ApiService.getUserActivity(userId),
         ApiService.getUserPerformance(userId),
+        ApiService.getUserAverageSessions(userId),
       ]);
-      // console.log("performanceData:", performanceData);
 
       const formattedUserName = new User(userData.data);
       setUserName(formattedUserName);
@@ -47,9 +54,18 @@ const Dashboard = () => {
         performanceData.data.kind,
         performanceData.data.data
       );
-      // console.log("userPerformanceInstance:", userPerformanceInstance);
-
       setUserPerformance(userPerformanceInstance);
+
+      const formattedUserAverageSessions = new LineChartClass(
+        userAverageSessionsData.data
+      );
+      const transformedData = formattedUserAverageSessions.transformedData.map(
+        (entry) => ({
+          day: entry.day,
+          [`User${userId}`]: entry[userId],
+        })
+      );
+      setTransformedData(transformedData);
     }
 
     fetchData();
@@ -66,7 +82,11 @@ const Dashboard = () => {
             <div className="user_data--activity">
               <BarChartUser userActivity={userActivity} />
               <div className="user_performances">
-                <LineChartUser />
+                {/* <LineChartUser /> */}
+                <LineChartUser
+                  userId={userId}
+                  transformedData={transformedData}
+                />
                 <RadarChartUser userPerformance={userPerformance} />
                 {/* Passer la props userScore à RadialBarChartUser */}
                 <RadialBarChartUser userScore={userScore} />

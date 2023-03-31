@@ -12,26 +12,15 @@ const ApiService = {
       const userData = USER_MAIN_DATA.find(
         (item) => item.id === parseInt(userId)
       );
+      console.log("Données mockées pour getUser :", userData);
       return { data: userData };
     } else {
       const response = await fetch(`http://localhost:3000/user/${userId}`);
       const data = await response.json();
-
+      console.log("Données réelles pour getUser :", data);
       return data;
     }
   },
-
-  // getUserTest: async (userId, mock) => {
-  //   let response = {};
-  //   if (mock) {
-  //     response = USER_MAIN_DATA.find((item) => item.id === parseInt(userId));
-  //   } else {
-  //     const data = await fetch(`http://localhost:3000/user/${userId}`);
-  //     response = await data.json();
-  //   }
-  //   console.log(response);
-  //   return response;
-  // },
 
   getUserActivity: async (userId) => {
     if (dataMocked) {
@@ -59,7 +48,7 @@ const ApiService = {
         `http://localhost:3000/user/${userId}/average-sessions`
       );
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
       return data;
     }
   },

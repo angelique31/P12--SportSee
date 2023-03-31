@@ -1,42 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 // import { USER_AVERAGE_SESSIONS } from "../mockedData";
-import { useParams } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
-import LineChartClass from "../api/LineChartClass";
-import ApiService from "../api/ApiService";
-
-/**
- * Transforme les données brutes en un format adapté pour le graphique linéaire.
- *
- * @param {Array} data - Les données brutes, sous forme de tableau d'objets.
- * @returns {Array} Les données transformées, sous forme de tableau d'objets avec les durées de session pour chaque utilisateur pour chaque jour.
- */
-// const transformData = (data) => {
-//   console.log("transformData input:", data);
-//   const transformedData = [];
-//   console.log("Data length:", data.length);
-
-//   data.forEach((user) => {
-//     console.log("user:", user);
-//     user.sessions.forEach((session) => {
-//       console.log("session:", session);
-//       const dayData = transformedData.find(
-//         (entry) => entry.day === session.day
-//       );
-
-//       if (dayData) {
-//         dayData[`User${user.userId}`] = session.sessionLength;
-//       } else {
-//         transformedData.push({
-//           day: session.day,
-//           [`User${user.userId}`]: session.sessionLength,
-//         });
-//       }
-//     });
-//   });
-//   console.log("transformData output:", transformedData);
-//   return transformedData.sort((a, b) => a.day - b.day);
-// };
 
 /**
  * Tableau contenant les lettres correspondant aux jours de la semaine.
@@ -121,44 +85,14 @@ const CustomCursor = () => null;
  *Composant affichant la durée moyenne des sessions d'un utilisateur sous forme de graphique à ligne.
  * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
  */
-const LineChartUser = () => {
-  const { userId } = useParams();
+const LineChartUser = ({ transformedData, userId }) => {
+  // const { userId } = useParams();
   // const transformedData = transformData(USER_AVERAGE_SESSIONS);
 
-  const [transformedData, setTransformedData] = useState(null);
   const [surfaceColor, setSurfaceColor] = React.useState(
     "rgba(255, 0, 0, 0.4)"
   );
   const [maskPosition, setMaskPosition] = React.useState(0);
-
-  useEffect(() => {
-    async function fetchData() {
-      // const data = await ApiService.getUserAverageSessions(userId);
-      // console.log(data);
-
-      // const formattedUserAverageSessions = new LineChartClass(data.data);
-      // console.log(formattedUserAverageSessions);
-
-      // setTransformedData(formattedUserAverageSessions);
-
-      const data = await ApiService.getUserAverageSessions(userId);
-      const formattedUserAverageSessions = new LineChartClass(data.data);
-      // const transformedData = formattedUserAverageSessions.transformedData;
-      // console.log(transformedData);
-      const transformedData = formattedUserAverageSessions.transformedData.map(
-        (entry) => ({
-          day: entry.day,
-          [`User${userId}`]: entry[userId],
-        })
-      );
-
-      setTransformedData(transformedData);
-    }
-
-    fetchData();
-  }, [userId]);
-
-  console.log(transformedData);
 
   /**
    * Gère le mouvement de la souris sur le graphique et modifie la couleur de fond
