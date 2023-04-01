@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/P12--SportSee/static/css/main.235242d2.css",
+    "main.js": "/P12--SportSee/static/js/main.7113f826.js",
+    "static/media/logo-sportsee.png": "/P12--SportSee/static/media/logo-sportsee.337e8febecea24c0c4b1.png",
+    "index.html": "/P12--SportSee/index.html",
+    "main.235242d2.css.map": "/P12--SportSee/static/css/main.235242d2.css.map",
+    "main.7113f826.js.map": "/P12--SportSee/static/js/main.7113f826.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.235242d2.css",
+    "static/js/main.7113f826.js"
+  ]
+}
