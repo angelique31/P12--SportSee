@@ -10,17 +10,17 @@ const VerticalNavBar = () => {
     <nav className="nav_list">
       <ul className="nav_list--icon">
         <li>
-          <Link className="nav_icon" to="/">
+          <Link className="nav_icon" to="/home/dashboard/:userId">
             <img className="nav_icon--logo" src={iconOne} alt="logo sportsee" />
           </Link>
         </li>
         <li>
-          <Link className="nav_icon" to="/">
+          <Link className="nav_icon" to="/home/dashboard/:userId">
             <img className="nav_icon--logo" src={iconTwo} alt="logo sportsee" />
           </Link>
         </li>
         <li>
-          <Link className="nav_link" to="/">
+          <Link className="nav_link" to="/home/dashboard/:userId">
             <img
               className="nav_icon--logo"
               src={iconThree}
@@ -29,7 +29,7 @@ const VerticalNavBar = () => {
           </Link>
         </li>
         <li>
-          <Link className="nav_link" to="/">
+          <Link className="nav_link" to="/home/dashboard/:userId">
             <img
               className="nav_icon--logo"
               src={iconFour}

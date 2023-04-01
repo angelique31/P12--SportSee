@@ -19,17 +19,17 @@ const Header = () => {
           </Link>
         </li>
         <li>
-          <Link className="nav_link" to="/">
+          <Link className="nav_link" to="/home/dashboard/:userId">
             Profil
           </Link>
         </li>
         <li>
-          <Link className="nav_link" to="/">
+          <Link className="nav_link" to="/home/dashboard/:userId">
             Réglage
           </Link>
         </li>
         <li>
-          <Link className="nav_link" to="/">
+          <Link className="nav_link" to="/home/dashboard/:userId">
             Communauté
           </Link>
         </li>
