@@ -3,11 +3,13 @@
     justify-content: space-between;
     height: 91px;
     background-color: global.$black;
-    // min-width: 1200px;
+    //  min-width: 1200px;
     width: 100vw;
     &--logo{
-        height: 100%;
-        padding: 20px;
+        width: 178px;
+        height: 61px;
+        margin-left: 25px;
+        margin-top: 18px;
         cursor: pointer;
     }
     &--title{
