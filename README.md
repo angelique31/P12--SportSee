@@ -30,18 +30,18 @@ Sportsee is a sports application that allows its users to follow their number of
 ### **How to launch the backend locally :**
 
 1. Access the project directory: <br>
-   > **_cd sportsee-backend_**
+   > **_cd back-end_**
 2. Install project dependencies:
-   > **_npm install_**
+   > **_yarn_**
 3. Launch :
-   > **_npm start_**
+   > **_yarn dev_**
 4. The backend will be launched in
    > **_http://localhost:3000/_**
 
 ### **How to launch the frontend :**
 
 1. Access the project directory:
-   > **_cd sportsee_**
+   > **_cd front-end_**
 2. Install npm packages (described in package.json):
    > **_npm install_**
 3. Then launch :
