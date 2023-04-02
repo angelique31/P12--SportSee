@@ -10,7 +10,7 @@
       flex-direction: column;
       align-items: center;
       width: 117px;
-      padding-top: 250px;
+      padding-top: 260px;
       gap: 20px;
       li {
         transition: transform 0.6s ease-in-out;
@@ -41,7 +41,7 @@
     &_name{
         color: white;
         transform: rotate(270deg);
-        margin-top: 280px;
+        margin-top: 207px;
         width: 167px;
         font-family: global.$font1;
         font-weight: 500;

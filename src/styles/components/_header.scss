@@ -4,7 +4,7 @@
     height: 91px;
     background-color: global.$black;
     min-width: 1200px;
-    width: 100vw;
+    width: 100%;
     @media screen and (max-width: 700px) {
         min-width: 840px;
     }
