@@ -22,6 +22,7 @@ const ApiService = {
       return { data: userData };
     } else {
       const response = await fetch(`http://localhost:3000/user/${userId}`);
+
       const data = await response.json();
       console.log("Données réelles pour getUser :", data);
       return data;

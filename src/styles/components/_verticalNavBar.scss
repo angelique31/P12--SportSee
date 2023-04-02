@@ -2,6 +2,9 @@
     width: 117px;
     height: 1024px;
     background-color: global.$black;
+    @media screen and (max-width: 700px) {
+      height: 1194px;
+    }
     &--icon {
       display: flex;
       flex-direction: column;

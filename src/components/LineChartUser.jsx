@@ -82,8 +82,18 @@ const CustomTooltip = ({ active, payload }) => {
 const CustomCursor = () => null;
 
 /**
- *Composant affichant la durée moyenne des sessions d'un utilisateur sous forme de graphique à ligne.
- * @returns {JSX.Element} Le composant de la durée moyenne des sessions.
+ * LineChartUser component displaying a line chart of the average session duration
+ * for a given user. The chart shows session duration in minutes for each day of the week.
+ * Composant LineChartUser affichant un graphique linéaire de la durée moyenne des sessions
+ * pour un utilisateur donné. Le graphique montre la durée des sessions en minutes pour chaque jour de la semaine.
+ *
+ * @component
+ * <LineChartUser transformedData={transformedData} userId={1} />
+ *
+ * @param {Object[]} transformedData - Array of objects representing the chart data.
+ * @param {number} userId - User's ID.
+ * @param {Object[]} transformedData - Tableau d'objets représentant les données du graphique.
+ * @param {number} userId - Identifiant de l'utilisateur.
  */
 const LineChartUser = ({ transformedData, userId }) => {
   const [surfaceColor, setSurfaceColor] = React.useState(

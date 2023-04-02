@@ -14,6 +14,16 @@ import BarChartClass from "../../api/BarChartClass";
 import UserPerformance from "../../api/RadarChartClass";
 import LineChartClass from "../../api/LineChartClass";
 
+/**
+ * Le composant Dashboard affiche le tableau de bord de l'utilisateur, y compris la barre de navigation verticale, les informations de l'utilisateur et les graphiques.
+ * Il récupère les données de l'utilisateur et les met en forme pour être utilisées par les sous-composants.
+ *
+ * The Dashboard component displays the user's dashboard, including the vertical navigation bar, user information, and charts.
+ * It fetches the user's data and formats it to be used by the subcomponents.
+ *
+ * @returns {JSX.Element} Dashboard component
+ */
+
 const Dashboard = () => {
   const { userId } = useParams();
   const [userName, setUserName] = useState(null);
@@ -22,6 +32,7 @@ const Dashboard = () => {
   const [userData, setUserMain] = useState(null);
   const [userPerformance, setUserPerformance] = useState(null);
   const [transformedData, setTransformedData] = useState(null);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -71,6 +82,28 @@ const Dashboard = () => {
     fetchData();
   }, [userId]);
 
+  /**
+   * Updates the `isDataLoaded` state based on the availability of the data.
+   * The `isDataLoaded` state is updated to `true` when all the data is available.
+   * Otherwise, it's updated to `false`.
+   *
+   * Met à jour l'état `isDataLoaded` en fonction de la disponibilité des données.
+   * L'état `isDataLoaded` est mis à jour en `true` lorsque toutes les données sont disponibles.
+   * Sinon, il est mis à jour en `false`.
+   * @effect
+   */
+  useEffect(() => {
+    if (
+      userPerformance &&
+      userPerformance.data &&
+      userPerformance.data.length > 0
+    ) {
+      setIsDataLoaded(true);
+    } else {
+      setIsDataLoaded(false);
+    }
+  }, [userPerformance]);
+
   return (
     <div>
       <Header />
@@ -87,7 +120,10 @@ const Dashboard = () => {
                   userId={parseInt(userId)} // convertir userId en nombre avant de le passer au composant LineChartUser
                   transformedData={transformedData}
                 />
-                <RadarChartUser userPerformance={userPerformance} />
+                <RadarChartUser
+                  userPerformance={userPerformance}
+                  isDataLoaded={isDataLoaded}
+                />
                 {/* Passer la props userScore à RadialBarChartUser */}
                 <RadialBarChartUser userScore={userScore} />
               </div>

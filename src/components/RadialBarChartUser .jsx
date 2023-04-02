@@ -6,6 +6,17 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/**
+ * RadialBarChartUser component displays the user's score as a percentage of their goal.
+ * The score is shown as a radial bar chart with a circular progress.
+ *
+ * Le composant RadialBarChartUser affiche le score de l'utilisateur en pourcentage de leur objectif.
+ * Le score est affiché sous forme de diagramme à barres radial avec une progression circulaire.
+ *
+ * @param {Object} props - Component properties.
+ * @param {Object} props.userScore - User score object.
+ * @returns {JSX.Element} RadialBarChartUser component.
+ */
 const RadialBarChartUser = ({ userScore }) => {
   const score = userScore
     ? parseInt((userScore.todayScore || userScore.score) * 100)
@@ -27,18 +38,18 @@ const RadialBarChartUser = ({ userScore }) => {
         <span className="score_label">de votre objectif</span>
       </div>
 
-      <ResponsiveContainer width={600} height={600}>
+      <ResponsiveContainer width={"100%"} height={"100%"}>
         <RadialBarChart
           cx="50%"
-          cy="63%"
-          innerRadius="25%"
-          outerRadius="100%"
+          cy="55%"
+          innerRadius="70%"
+          outerRadius="83%"
           barSize={10}
           data={data}
           startAngle={90}
           endAngle={450}
         >
-          <circle cx="50%" cy="63%" fill="white" r="90"></circle>
+          <circle cx="50%" cy="55%" fill="white" r="80"></circle>
           <PolarAngleAxis
             type="number"
             domain={[0, 100]}

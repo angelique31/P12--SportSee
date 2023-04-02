@@ -4,6 +4,15 @@ import proteinIcon from "../assets/iconsEnergy/protein-icon.png";
 import appleIcon from "../assets/iconsEnergy/apple-icon.png";
 import burgerIcon from "../assets/iconsEnergy/burger-icon.png";
 
+/**
+ * Le composant UserMainData affiche les données principales de l'utilisateur, telles que les calories, les protéines, les glucides et les lipides.
+ *
+ * The UserMainData component displays the user's main data, such as calories, proteins, carbohydrates, and lipids.
+ * @param {Object} props - Component properties.
+ * @param {Object} props.userData - User data containing key data.
+ * @returns {JSX.Element} UserMainData component.
+ */
+
 const UserMainData = ({ userData }) => {
   return (
     <>

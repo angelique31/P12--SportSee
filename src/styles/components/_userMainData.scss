@@ -1,10 +1,18 @@
 .user_data{
     display: flex;
+    @media screen and (max-width: 700px) {
+        flex-direction: column;
+    }
 }
 
 /**************Energy container**************************/
-
-
+@media screen and (max-width: 700px) {
+    .energy_container{
+        display: flex;
+        gap: 20px;
+        margin-top: 60px;
+    }
+}
 .energy_info{
     display: flex;
     align-items: center;
@@ -12,10 +20,19 @@
     width: 258px;
     height: 118px;
     margin-bottom: 39px;
+    @media screen and (max-width: 700px) {
+        width: 160px;
+        height: 70px;
+    }
     &--logo{
         width: 60px;
         height: 60px;
         margin: 32px;
+        @media screen and (max-width: 700px) {
+            width: 40px;
+            height: 40px;
+            margin: 15px;
+        }
     }
 }
 
@@ -26,10 +43,16 @@
         font-weight: 700;
         font-size: 1.2rem;
         line-height: 24px;
+        @media screen and (max-width: 700px) {
+           font-size: 0.9rem ;
+        }
     }
     &--name{
         font-family: global.$font1;
         font-weight: 500;
         font-size: 0.8rem;
     }
+    @media screen and (max-width: 700px) {
+        font-size: 0.5rem ;
+     }
 }

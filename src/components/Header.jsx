@@ -2,6 +2,15 @@ import React from "react";
 import logoSportsee from "../assets/logo-sportsee.png";
 import { Link } from "react-router-dom";
 
+/**
+ * The Header component displays the navigation bar at the top of the page,
+ * featuring the Sportsee logo and links to various pages of the site.
+ * Le composant Header affiche la barre de navigation en haut de la page,
+ * avec le logo Sportsee et les liens vers les différentes pages du site.
+ *
+ * @component
+ * <Header />
+ */
 const Header = () => {
   return (
     <nav className="nav_container">

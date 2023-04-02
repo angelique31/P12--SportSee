@@ -1,6 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+/**
+ * The NotFoundPage component displays a 404 error page when the requested page is not found.
+ * It also provides a link to return to the homepage.
+ *
+ * Le composant NotFoundPage affiche une page d'erreur 404 lorsque la page demandée n'est pas trouvée.
+ * Il propose également un lien pour revenir à la page d'accueil.
+ *
+ * @returns {JSX.Element} NotFoundPage component
+ */
 const NotFoundPage = () => {
   return (
     <div>

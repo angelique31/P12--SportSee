@@ -4,6 +4,15 @@ import logoGroup from "../../assets/group.png";
 import { Link } from "react-router-dom";
 import { USER_MAIN_DATA } from "../../mockedData";
 
+/**
+ * Le composant Home affiche la page d'accueil avec le logo de Sportsee et une liste de liens vers les tableaux de bord des utilisateurs.
+ * Chaque lien mène à un tableau de bord spécifique à un utilisateur.
+ *
+ * The Home component displays the homepage and the Sportsee logo and a list of links to user dashboards.
+ * Each link leads to a user-specific dashboard.
+ *
+ * @returns {JSX.Element} Home component
+ */
 const Home = () => {
   return (
     <div>

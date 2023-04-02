@@ -1,4 +1,14 @@
 import PropTypes from "prop-types";
+
+/**
+ * Le composant UserName affiche le nom de l'utilisateur et un message
+ * The UserName component displays the user's name and a congratulatory message
+ *
+ * @param {Object} props - Component properties.
+ * @param {Object} props.userName - Object containing the user's first name.
+ * @returns {JSX.Element} UserName component.
+ */
+
 const UserName = ({ userName }) => {
   return (
     <div className="user_title">

@@ -4,6 +4,9 @@
     &--name{
         font-size: 3rem;
         font-weight: 500;
+        @media screen and (max-width: 700px) {
+            font-size: 2rem;
+        }
         span{
             color: global.$primary;
         }
@@ -12,5 +15,8 @@
         font-weight: 400;
         font-size: 1.1rem;
         line-height: 41px;
+        @media screen and (max-width: 700px) {
+            font-size: 0.9rem;
+        }
     }
 }

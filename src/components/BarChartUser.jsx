@@ -9,13 +9,26 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+/**
+ * BarChartUser component displays a dual bar chart representing daily activity data
+ * of a user, including weight (in kg) and calories burned (in kCal).
+ * Le composant BarChartUser affiche un double diagramme à barres représentant les données
+ * d'activité quotidienne d'un utilisateur, y compris le poids (en kg) et les calories brûlées (en kCal).
+ *
+ * @component
+ * userActivity is an object containing user activity data
+ * <BarChartUser userActivity={userActivity} />
+ *
+ * @param {object} props - The component's props
+ * @param {object} props.userActivity - The user's activity data
+ */
+
 const BarChartUser = ({ userActivity }) => {
   const data = userActivity?.sessions.map((session) => ({
     name: session.day ? new Date(session.day).getDate().toString() : "",
     weight: session.kilogram,
     calories: session.calories,
   }));
-  // console.log(data);
 
   /**
    * Fonction pour personnaliser le tooltip (infobulle)
@@ -66,7 +79,6 @@ const BarChartUser = ({ userActivity }) => {
               horizontal={true}
               vertical={false}
               dot={true}
-              // horizontalPoints={[68]}
             />
             <XAxis
               dataKey="name"

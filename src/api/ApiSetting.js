@@ -1,5 +1,5 @@
 // pour utiliser les données mockées
-// export const dataMocked = true;
+export const dataMocked = true;
 
 // pour utiliser les données réelles
-export const dataMocked = false;
+// export const dataMocked = false;
