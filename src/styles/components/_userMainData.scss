@@ -39,7 +39,7 @@
 .info_calorie{
     
     &--number{
-        font-family: global.$font1;
+        font-family: 'Roboto', sans-serif;
         font-weight: 700;
         font-size: 1.2rem;
         line-height: 24px;
@@ -48,7 +48,7 @@
         }
     }
     &--name{
-        font-family: global.$font1;
+        font-family:  'Roboto', sans-serif;
         font-weight: 500;
         font-size: 0.8rem;
     }

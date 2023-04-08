@@ -21,11 +21,19 @@ const ApiService = {
       console.log("Données mockées pour getUser :", userData);
       return { data: userData };
     } else {
-      const response = await fetch(`http://localhost:3000/user/${userId}`);
-
-      const data = await response.json();
-      console.log("Données réelles pour getUser :", data);
-      return data;
+      try {
+        const response = await fetch(`http://localhost:3000/user/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          return data;
+        } else {
+          console.error(`Status code: ${response.status}`);
+          throw new Error("Serveur inaccessible");
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error("Serveur inaccessible");
+      }
     }
   },
 
@@ -36,11 +44,22 @@ const ApiService = {
       );
       return { data: userActivity };
     } else {
-      const response = await fetch(
-        `http://localhost:3000/user/${userId}/activity`
-      );
-      const data = await response.json();
-      return data;
+      try {
+        const response = await fetch(
+          `http://localhost:3000/user/${userId}/activity`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          return data;
+        } else {
+          console.error(`Status code: ${response.status}`);
+          throw new Error("Serveur inaccessible");
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error("Serveur inaccessible");
+      }
     }
   },
 
@@ -51,12 +70,22 @@ const ApiService = {
       );
       return { data: userAverageSessions };
     } else {
-      const response = await fetch(
-        `http://localhost:3000/user/${userId}/average-sessions`
-      );
-      const data = await response.json();
-      // console.log(data);
-      return data;
+      try {
+        const response = await fetch(
+          `http://localhost:3000/user/${userId}/average-sessions`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          return data;
+        } else {
+          console.error(`Status code: ${response.status}`);
+          throw new Error("Serveur inaccessible");
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error("Serveur inaccessible");
+      }
     }
   },
 
@@ -67,12 +96,22 @@ const ApiService = {
       );
       return { data: userPerformance };
     } else {
-      const response = await fetch(
-        `http://localhost:3000/user/${userId}/performance`
-      );
-      const data = await response.json();
-      // console.log(data);
-      return data;
+      try {
+        const response = await fetch(
+          `http://localhost:3000/user/${userId}/performance`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          return data;
+        } else {
+          console.error(`Status code: ${response.status}`);
+          throw new Error("Serveur inaccessible");
+        }
+      } catch (error) {
+        console.error(error);
+        throw new Error("Serveur inaccessible");
+      }
     }
   },
 };

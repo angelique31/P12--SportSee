@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import ApiService from "../../api/ApiService";
 import Header from "../../components/Header";
 import VerticalNavBar from "../../components/VerticalNavBar";
@@ -13,6 +13,7 @@ import User from "../../api/UserMainDataClass";
 import BarChartClass from "../../api/BarChartClass";
 import UserPerformance from "../../api/RadarChartClass";
 import LineChartClass from "../../api/LineChartClass";
+import Loader from "../../components/Loader";
 
 /**
  * Le composant Dashboard affiche le tableau de bord de l'utilisateur, y compris la barre de navigation verticale, les informations de l'utilisateur et les graphiques.
@@ -33,50 +34,106 @@ const Dashboard = () => {
   const [userPerformance, setUserPerformance] = useState(null);
   const [transformedData, setTransformedData] = useState(null);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [redirectToErrorPage, setRedirectToErrorPage] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const [
+  //       userData,
+  //       userActivityData,
+  //       performanceData,
+  //       userAverageSessionsData,
+  //     ] = await Promise.all([
+  //       ApiService.getUser(userId),
+  //       ApiService.getUserActivity(userId),
+  //       ApiService.getUserPerformance(userId),
+  //       ApiService.getUserAverageSessions(userId),
+  //     ]);
+
+  //     const formattedUserName = new User(userData.data);
+  //     setUserName(formattedUserName);
+
+  //     const formattedUserActivity = new BarChartClass(userActivityData.data);
+  //     setUserActivity(formattedUserActivity);
+
+  //     const formattedUserScore = new User(userData.data);
+  //     setUserScore(formattedUserScore);
+
+  //     const formattedUser = new User(userData.data);
+  //     setUserMain(formattedUser);
+
+  //     const userPerformanceInstance = new UserPerformance(
+  //       userId,
+  //       performanceData.data.kind,
+  //       performanceData.data.data
+  //     );
+  //     setUserPerformance(userPerformanceInstance);
+
+  //     const formattedUserAverageSessions = new LineChartClass(
+  //       userAverageSessionsData.data
+  //     );
+  //     const transformedData = formattedUserAverageSessions.transformedData.map(
+  //       (entry) => ({
+  //         day: entry.day,
+  //         [`User${userId}`]: entry[userId],
+  //       })
+  //     );
+  //     setTransformedData(transformedData);
+  //   }
+
+  //   fetchData();
+  // }, [userId]);
 
   useEffect(() => {
     async function fetchData() {
-      const [
-        userData,
-        userActivityData,
-        performanceData,
-        userAverageSessionsData,
-      ] = await Promise.all([
-        ApiService.getUser(userId),
-        ApiService.getUserActivity(userId),
-        ApiService.getUserPerformance(userId),
-        ApiService.getUserAverageSessions(userId),
-      ]);
+      try {
+        const [
+          userData,
+          userActivityData,
+          performanceData,
+          userAverageSessionsData,
+        ] = await Promise.all([
+          ApiService.getUser(userId),
+          ApiService.getUserActivity(userId),
+          ApiService.getUserPerformance(userId),
+          ApiService.getUserAverageSessions(userId),
+        ]);
 
-      const formattedUserName = new User(userData.data);
-      setUserName(formattedUserName);
+        const formattedUserName = new User(userData.data);
+        setUserName(formattedUserName);
 
-      const formattedUserActivity = new BarChartClass(userActivityData.data);
-      setUserActivity(formattedUserActivity);
+        const formattedUserActivity = new BarChartClass(userActivityData.data);
+        setUserActivity(formattedUserActivity);
 
-      const formattedUserScore = new User(userData.data);
-      setUserScore(formattedUserScore);
+        const formattedUserScore = new User(userData.data);
+        setUserScore(formattedUserScore);
 
-      const formattedUser = new User(userData.data);
-      setUserMain(formattedUser);
+        const formattedUser = new User(userData.data);
+        setUserMain(formattedUser);
 
-      const userPerformanceInstance = new UserPerformance(
-        userId,
-        performanceData.data.kind,
-        performanceData.data.data
-      );
-      setUserPerformance(userPerformanceInstance);
+        const userPerformanceInstance = new UserPerformance(
+          userId,
+          performanceData.data.kind,
+          performanceData.data.data
+        );
+        setUserPerformance(userPerformanceInstance);
 
-      const formattedUserAverageSessions = new LineChartClass(
-        userAverageSessionsData.data
-      );
-      const transformedData = formattedUserAverageSessions.transformedData.map(
-        (entry) => ({
-          day: entry.day,
-          [`User${userId}`]: entry[userId],
-        })
-      );
-      setTransformedData(transformedData);
+        const formattedUserAverageSessions = new LineChartClass(
+          userAverageSessionsData.data
+        );
+        const transformedData =
+          formattedUserAverageSessions.transformedData.map((entry) => ({
+            day: entry.day,
+            [`User${userId}`]: entry[userId],
+          }));
+        setTransformedData(transformedData);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données:", error);
+        setRedirectToErrorPage(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchData();
@@ -104,8 +161,17 @@ const Dashboard = () => {
     }
   }, [userPerformance]);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (redirectToErrorPage) {
+    return <Navigate to="/notFoundPage" />;
+  }
+
   return (
     <div>
+      {/* {redirectToErrorPage && <Navigate to="/notFoundPage" />} */}
       <Header />
       <main>
         <VerticalNavBar />
@@ -132,6 +198,12 @@ const Dashboard = () => {
           </section>
         </section>
       </main>
+      {/* {(!userName ||
+        !userActivity ||
+        !userScore ||
+        !userData ||
+        !userPerformance ||
+        !transformedData) && <Navigate to="/notFoundPage" />} */}
     </div>
   );
 };

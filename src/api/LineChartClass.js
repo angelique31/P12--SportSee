@@ -16,6 +16,7 @@ class LineChartClass {
    */
   transformData(sessions) {
     const transformedData = [];
+    // console.log("Sessions initiales:", sessions);
 
     sessions.forEach((session) => {
       const dayData = transformedData.find(
@@ -31,7 +32,6 @@ class LineChartClass {
         });
       }
     });
-
     return transformedData.sort((a, b) => a.day - b.day);
   }
 }

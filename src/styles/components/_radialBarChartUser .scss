@@ -1,6 +1,6 @@
 
 .score_title{
-    font-family: global.$font1;
+    font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
     font-weight: 500;
     margin-left: 30px;
@@ -36,13 +36,13 @@
     z-index: 10;
     width: 96px;
     &_percentage{
-        font-family: global.$font1;
+        font-family: 'Roboto', sans-serif;
         font-size: 1.6rem;
         font-weight: 700;
         line-height: 26px;
     }
     &_label{
-        font-family: global.$font1;
+        font-family: 'Roboto', sans-serif;
         font-size: 1rem;
         font-weight: 500;
         color:  rgba(116, 121, 140, 1);

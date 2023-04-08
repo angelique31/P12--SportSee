@@ -1,7 +1,7 @@
 .nav_list {
     width: 117px;
     height: 1024px;
-    background-color: global.$black;
+    background-color:black;
     @media screen and (max-width: 700px) {
       height: 1194px;
     }
@@ -43,7 +43,7 @@
         transform: rotate(270deg);
         margin-top: 207px;
         width: 167px;
-        font-family: global.$font1;
+        font-family: 'Roboto', sans-serif;
         font-weight: 500;
         font-size: 0.75rem;
     }

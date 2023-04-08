@@ -1,5 +1,5 @@
 .user_title{
-    font-family: global.$font1;
+    font-family:  'Roboto', sans-serif;
     padding-bottom: 78px;
     &--name{
         font-size: 3rem;
@@ -8,7 +8,7 @@
             font-size: 2rem;
         }
         span{
-            color: global.$primary;
+            color: rgba(255, 1, 1, 1);
         }
     }
     &--congrat{

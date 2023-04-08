@@ -6,8 +6,8 @@
 }
 
 .title{
-    color: global.$primary;
-    font-family: global.$font1;
+    color: rgba(255, 1, 1, 1);
+    font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 10rem;
     margin-top: 66px;
@@ -18,8 +18,8 @@
         font-size: 5rem;
     }
     &__text{
-        color: global.$primary;
-        font-family: global.$font1;
+        color: rgba(255, 1, 1, 1);
+        font-family: 'Roboto', sans-serif;
         font-weight: 500;
         font-size: 1.7rem;
         line-height: 66px;
@@ -32,8 +32,8 @@
         }
     }
     &__return{
-        color: global.$primary;
-        font-family: global.$font1;
+        color: rgba(255, 1, 1, 1);
+        font-family: 'Roboto', sans-serif;
         font-size: 1.12rem;
         font-weight: 500;
         padding-bottom: 80px;

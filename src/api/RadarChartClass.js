@@ -18,5 +18,4 @@ class UserPerformance {
     });
   }
 }
-
 export default UserPerformance;

@@ -9,20 +9,20 @@
     height: 320px;
     border-radius: 5px;
     margin-right: 30px;
-   position: relative;
+    position: relative;
 }
 
 .data_title{
     display: flex;
     align-items: center;
-    font-family: global.$font1;
+    font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 0.9rem;
     justify-content: space-around;
     padding-top: 32px;
     margin-bottom: 31px;
     &--name{
-        font-family: global.$font1;
+        font-family:  'Roboto', sans-serif;
         font-weight: 500;
         font-size: 15px;
     }
@@ -44,7 +44,7 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: global.$primary;
+        background-color: rgba(255, 1, 1, 1);
         margin-right: 10px;
     }
 }

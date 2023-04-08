@@ -8,7 +8,7 @@
         text-align: center;
         margin-top: 80px;
         font-size: 3rem;
-        font-family: global.$font2;
+        font-family: 'Montserrat', sans-serif;
     }
 }
 
@@ -28,9 +28,9 @@
         }
     }
     .identity{
-        color: global.$black;
+        color: black;
         &:hover{
-            color: global.$primary;
+            color: rgba(255, 1, 1, 1);
         }
     }
     
