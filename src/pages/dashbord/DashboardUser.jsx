@@ -1,6 +1,3 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable no-console */
-/* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import ApiService from "../../api/ApiService";
