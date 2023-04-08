@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 /**
- * Le composant UserName affiche le nom de l'utilisateur et un message
  * The UserName component displays the user's name and a congratulatory message
  *
  * @param {Object} props - Component properties.

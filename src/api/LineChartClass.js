@@ -16,7 +16,6 @@ class LineChartClass {
    */
   transformData(sessions) {
     const transformedData = [];
-    // console.log("Sessions initiales:", sessions);
 
     sessions.forEach((session) => {
       const dayData = transformedData.find(

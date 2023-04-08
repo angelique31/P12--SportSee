@@ -2,10 +2,8 @@ import PropTypes from "prop-types";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 
 /**
- * * RadarChartUser component displaying a radar chart showing the user's performance
+ * RadarChartUser component displaying a radar chart showing the user's performance
  * in various categories (cardio, energy, endurance, strength, speed, and intensity).
- * Composant RadarChartUser affichant un graphique radar montrant la performance
- * de l'utilisateur dans différentes catégories
  *
  * @component
  * @example
@@ -16,7 +14,6 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
  */
 const RadarChartUser = ({ userPerformance, isDataLoaded }) => {
   /**
-   *  Un objet contenant les traductions des noms de catégories en anglais vers le français.
    *  An object containing translations of category names from English to French.
    */
   const translations = {
@@ -29,7 +26,6 @@ const RadarChartUser = ({ userPerformance, isDataLoaded }) => {
   };
 
   /**
-   * Un objet contenant les angles en degrés pour positionner les catégories (axes) autour du graphique RadarChart.
    * An object containing angles in degrees for positioning categories (axes) around the RadarChart.
    */
   const sortOrder = {

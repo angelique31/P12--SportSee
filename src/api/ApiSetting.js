@@ -1,6 +1,6 @@
 /**
- * Ce fichier permet de choisir entre l'utilisation de données mockées ou de données réelles.
- * @constant {boolean} dataMocked - Utiliser les données mockées (true) ou les données réelles (false).
+ * This file allows you to choose between using mocked data or real data.
+ * @constant {boolean} dataMocked - Use mocked data (true) or real data (false).
  *
  */
 // pour utiliser les données mockées

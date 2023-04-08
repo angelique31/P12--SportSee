@@ -10,9 +10,6 @@ import {
  * RadialBarChartUser component displays the user's score as a percentage of their goal.
  * The score is shown as a radial bar chart with a circular progress.
  *
- * Le composant RadialBarChartUser affiche le score de l'utilisateur en pourcentage de leur objectif.
- * Le score est affiché sous forme de diagramme à barres radial avec une progression circulaire.
- *
  * @param {Object} props - Component properties.
  * @param {Object} props.userScore - User score object.
  * @returns {JSX.Element} RadialBarChartUser component.

@@ -5,8 +5,6 @@ import appleIcon from "../assets/iconsEnergy/apple-icon.png";
 import burgerIcon from "../assets/iconsEnergy/burger-icon.png";
 
 /**
- * Le composant UserMainData affiche les données principales de l'utilisateur, telles que les calories, les protéines, les glucides et les lipides.
- *
  * The UserMainData component displays the user's main data, such as calories, proteins, carbohydrates, and lipids.
  * @param {Object} props - Component properties.
  * @param {Object} props.userData - User data containing key data.
@@ -79,7 +77,7 @@ const UserMainData = ({ userData }) => {
     </>
   );
 };
-//On vérifie que userData est un objet avec la propriété keyData qui est également un objet contenant les propriétés calorieCount, proteinCount, carbohydrateCount, et lipidCount, toutes de type nombre.
+
 UserMainData.propTypes = {
   userData: PropTypes.shape({
     keyData: PropTypes.shape({

@@ -7,7 +7,6 @@ import iconFour from "../assets/iconsVerticalNav/icon4.png";
 
 /**
  * The VerticalNavBar component displays a vertical navigation bar with icons and a link to the dashboard home page.
- * Le composant VerticalNavBar affiche une barre de navigation verticale avec des icônes et un lien vers la page d'accueil du tableau de bord.
  *
  * @returns {JSX.Element} VerticalNavBar component.
  */

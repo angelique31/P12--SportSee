@@ -3,28 +3,28 @@ import PropTypes from "prop-types";
 import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts";
 
 /**
- * Tableau contenant les lettres correspondant aux jours de la semaine.
- * Les jours sont indexés de 0 (Lundi) à 6 (Dimanche).
+ * Array containing the letters corresponding to the days of the week.
+ * The days are indexed from 0 (Monday) to 6 (Sunday).
  *
  * @type {Array}
  */
 const dayLabels = ["L", "M", "M", "J", "V", "S", "D"];
 
 /**
- * Fonction pour convertir les chiffres en lettres de jours de la semaine.
+ * Function to convert numbers into letters for days of the week.
  *
- * @param {number} dayNumber - Le numéro de jour (1-7).
- * @returns {string} La lettre correspondant au jour de la semaine (L, M, M, J, V, S, D).
+ * @param {number} dayNumber - The day number(1-7).
+ * @returns {string} The letter corresponding to the day of the week (L, M, M, J, V, S, D).
  */
 const dayFormatter = (dayNumber) => {
   return dayLabels[dayNumber - 1] || "";
 };
 
 /**
- * Composant personnalisé pour afficher les lettres des jours de la semaine sur l'axe X du graphique.
+ * Custom component to display the letters of the days of the week on the X-axis of the chart.
  *
  * @param {*} param0 - Les propriétés du composant, passées sous forme d'objet (x, y, payload).
- * @returns Le composant personnalisé pour afficher les lettres des jours de la semaine sur l'axe X du graphique.
+ * @returns The custom component for displaying the letters of the days of the week on the X-axis of the chart.
  */
 const CustomizedAxisTick = ({ x, y, payload }) => {
   return (
@@ -47,13 +47,13 @@ const CustomizedAxisTick = ({ x, y, payload }) => {
 };
 
 /**
- * Composant qui affiche une info-bulle personnalisée lorsque l'utilisateur
- * survole un point sur le graphique de la durée moyenne des sessions.
+ * Component that displays a customized tooltip when the user
+ * hovers over a point on the average session duration chart.
  *
- * @param {boolean} active - Indique si l'info-bulle doit être affichée ou non.
- * @param {Object[]} payload - Tableau contenant les données associées au point survolé.
- * @param {string} payload[].value - Valeur associée au point survolé (durée d'une session en minutes).
- * @returns {JSX.Element} Élément React représentant l'info-bulle personnalisée.
+ * @param {boolean} active - the tooltip should be displayed or not.
+ * @param {Object[]} payload - Array containing the data associated with the hovered point.
+ * @param {string} payload[].value - Value associated with the hovered point (session duration in minutes)
+ * @returns {JSX.Element} React element representing the custom tooltip.
  */
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -77,23 +77,19 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 /**
- * Désactiver le curseur par défaut du navigateur lorsqu'il survole le graphique
+ * Disable the browser's default cursor when hovering over the chart.
  */
 const CustomCursor = () => null;
 
 /**
  * LineChartUser component displaying a line chart of the average session duration
- * for a given user. The chart shows session duration in minutes for each day of the week.
- * Composant LineChartUser affichant un graphique linéaire de la durée moyenne des sessions
- * pour un utilisateur donné. Le graphique montre la durée des sessions en minutes pour chaque jour de la semaine.
+ * for a given user. The chart shows session duration in minutes for each day of the week
  *
  * @component
  * <LineChartUser transformedData={transformedData} userId={1} />
  *
  * @param {Object[]} transformedData - Array of objects representing the chart data.
  * @param {number} userId - User's ID.
- * @param {Object[]} transformedData - Tableau d'objets représentant les données du graphique.
- * @param {number} userId - Identifiant de l'utilisateur.
  */
 const LineChartUser = ({ transformedData, userId }) => {
   const [surfaceColor, setSurfaceColor] = React.useState(
@@ -102,11 +98,11 @@ const LineChartUser = ({ transformedData, userId }) => {
   const [maskPosition, setMaskPosition] = React.useState(0);
 
   /**
-   * Gère le mouvement de la souris sur le graphique et modifie la couleur de fond
+   * Handles the mouse movement on the chart and modifies the background color.
    *
-   * @param {Object} e - Objet représentant l'événement de mouvement de la souris.
-   * @param {number} e.chartX - Position horizontale de la souris sur le graphique.
-   * @param {string} e.activeLabel - Étiquette de l'axe X du graphique correspondant à la position de la souris.
+   * @param {Object} e - Object representing the mouse move event.
+   * @param {number} e.chartX - Horizontal position of the mouse on the chart.
+   * @param {string} e.activeLabel - X-axis label of the chart corresponding to the mouse position.
    */
   const handleMouseMove = (e) => {
     if (e && e.activeLabel) {

@@ -12,8 +12,6 @@ import {
 /**
  * BarChartUser component displays a dual bar chart representing daily activity data
  * of a user, including weight (in kg) and calories burned (in kCal).
- * Le composant BarChartUser affiche un double diagramme à barres représentant les données
- * d'activité quotidienne d'un utilisateur, y compris le poids (en kg) et les calories brûlées (en kCal).
  *
  * @component
  * userActivity is an object containing user activity data
@@ -31,7 +29,7 @@ const BarChartUser = ({ userActivity }) => {
   }));
 
   /**
-   * Fonction pour personnaliser le tooltip (infobulle)
+   * Function to customize the tooltip
    * @param {*} param0
    * @returns
    */
